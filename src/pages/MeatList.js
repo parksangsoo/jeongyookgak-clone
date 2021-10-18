@@ -1,57 +1,72 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
-import { Grid, Button } from '../elements/index';
-import Meat from '../components/Meat';
-import ban_pork from '../image/pcpork.png';
-import ban_beef from '../image/pcbeef.png';
-import ban_kfc from '../image/pcchicken.png';
+import { Container, FlexGrid } from '../elements/index';
+import Card from '../components/Card';
+import banner_pork from "../image/pcpork.png";
+import {
+    main_top,
+    main_img01,
+    main_img02,
+    main_item01,
+    main_item02,
+    main_item03,
+    main_item04,
+    main_item05,
+    main_item06,
+  } from "../image";
 
 const MeatList = () => {
 
-    const [meats,setMeat] = useState([
+    const datas = [
         {
-            itemId: 0,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"
+          id: 1,
+          src: main_item01,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
         },
-        {itemId: 1,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"},
-        {itemId: 2,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"},
-        {itemId: 3,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"},
-        {itemId: 4,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"},
-        {itemId: 5,
-            title:"초신선 돼지 삼겹살 구이용",
-            category: 0,
-            defaultprice: "16800원",
-            sumImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-list.png?alt=media"}
-    ])
+        {
+          id: 2,
+          src: main_item02,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
+        },
+        {
+          id: 3,
+          src: main_item03,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
+        },
+        {
+          id: 4,
+          src: main_item04,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
+        },
+        {
+          id: 5,
+          src: main_item05,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
+        },
+        {
+          id: 6,
+          src: main_item06,
+          title: "초신선 돼지 삼겹살 구이용",
+          text: "기준가 16,800원/600g",
+        },
+      ];
 
 
 
     return (
-        <React.Fragment>
-            <Grid>
-                <Grid>
-                    <Banner style={{ backgroundImage: `url(${ban_pork})` }}/>
-                </Grid>
-                <Grid is_flex margin="7.2rem auto 0 auto">
+        <>
+            
+            <FlexGrid>
+                <FlexGrid>
+                    <Banner style={{ backgroundImage: `url(${banner_pork})` }}/>
+                </FlexGrid>
+                <Container margin="50px auto">
+                <FlexGrid is_flex>
                     <MeatBtn>돼지</MeatBtn>
                     <MeatBtn>소</MeatBtn>
                     <MeatBtn>닭</MeatBtn>
@@ -59,15 +74,16 @@ const MeatList = () => {
                     <MeatBtn>밀키트</MeatBtn>
                     <MeatBtn>우유</MeatBtn>
                     <MeatBtn>달걀</MeatBtn>
-                    <MeatBtn>이유식</MeatBtn>
-                </Grid>
-                <Grid is_grid width="75rem" margin="auto">
-                    {meats.map((meat)=>{
-                        return <Meat key={meat.id} {...meat}/>
+                </FlexGrid>
+                <FlexGrid is_flex justify="space-between">
+                    {datas.map((data)=>{
+                        return <Card key={data.id} {...data}/>
                     })}
-                </Grid>
-            </Grid>
-        </React.Fragment>
+                </FlexGrid>
+                </Container>
+            </FlexGrid>
+            
+        </>
     );
 };
 
@@ -90,10 +106,11 @@ const MeatBtn = styled.button`
 `;
 
 const Banner = styled.div`
-  padding-top: 35rem;
+  padding-top: 38rem;
   background-position: 100%;
   background-size: cover;
 `;
+
 
 export default MeatList;
 
