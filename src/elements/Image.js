@@ -1,29 +1,31 @@
 import styled from "styled-components";
 import React from "react";
 
-
 // 이미지 컴포넌트
 /**
- * 
- * @param {*} props 
+ *
+ * @param {*} props
  * - shape 이미지를 동그랗게 보여줄 지, 네모로 보여줄 지 모양을 결정합니다.
  * - src 이미지 경로
  * - size 이미지 사이즈
- * @returns 
+ * @returns
  */
 const Image = (props) => {
-  const { src, size, width } = props;
+  const { type, src, size, width } = props;
 
   const styles = {
     src: src,
     size: size,
-    width: width
+    width: width,
   };
-    return (
-      <AspectOutter>
-        <AspectInner {...styles}></AspectInner>
-      </AspectOutter>
-    );
+  if (type === "default") {
+    return <DefaultImage {...styles} src={src} />;
+  }
+  return (
+    <AspectOutter>
+      <AspectInner {...styles}></AspectInner>
+    </AspectOutter>
+  );
 };
 
 Image.defaultProps = {
@@ -31,7 +33,6 @@ Image.defaultProps = {
   shape: "circle",
   src: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
   size: 36,
-
 };
 
 const AspectOutter = styled.div`
@@ -45,6 +46,11 @@ const AspectInner = styled.div`
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+`;
+
+const DefaultImage = styled.img`
+  ${(props) => (props.width ? `width: ${props.width};` : "100%")}
+  object-fit: cover;
 `;
 
 export default Image;

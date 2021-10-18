@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { text, _onClick, is_float, children, margin, width, padding,bg } = props;
+  const { text, _onClick, is_float, children, margin, width, padding, bg } =
+    props;
 
   if (is_float) {
     return (
       <React.Fragment>
-        <FloatButton onClick={_onClick}>{text? text : children}</FloatButton>
+        <FloatButton onClick={_onClick}>{text ? text : children}</FloatButton>
       </React.Fragment>
     );
   }
@@ -16,12 +17,14 @@ const Button = (props) => {
     margin: margin,
     width: width,
     padding: padding,
-    bg:bg
+    bg: bg,
   };
 
   return (
     <React.Fragment>
-      <ElButton {...styles} onClick={_onClick}>{text? text: children}</ElButton>
+      <ElButton {...styles} onClick={_onClick}>
+        {text ? text : children}
+      </ElButton>
     </React.Fragment>
   );
 };
@@ -32,19 +35,19 @@ Button.defaultProps = {
   _onClick: () => {},
   is_float: false,
   margin: false,
-  width: '100%',
+  width: "100%",
   padding: "12px 0px",
-  bg:'#212121'
+  bg: "#000",
 };
 
 const ElButton = styled.button`
   width: ${(props) => props.width};
-  ${(props) => (props.bg? `background-color: ${props.bg};` : '')};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   color: #ffffff;
   padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: none;
-  ${(props) => (props.margin? `margin: ${props.margin};` : '')}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
 const FloatButton = styled.button`

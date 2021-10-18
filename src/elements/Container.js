@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = (props) => {
-  const { padding, children } = props;
+  const { margin, padding, children } = props;
   const styles = {
+    margin: margin,
     padding: padding,
   };
   return (
