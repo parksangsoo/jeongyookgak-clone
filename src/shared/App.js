@@ -9,6 +9,7 @@ import Main from "../pages/Main";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import MeatList from "../pages/MeatList";
+import Detail from "../pages/Detail";
 
 function App() {
   useEffect(() => {}, []);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/meat" exact component={MeatList} />
+        <Route path = "/detail" exact component={Detail} />
         <Footer />
       </ConnectedRouter>
     </React.Fragment>
