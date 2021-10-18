@@ -1,35 +1,35 @@
 import React from "react";
+import { history } from "../redux/configureStore";
 import styled from "styled-components";
-import { LogoImage, cart } from "../image";
+import { LogoImage } from "../image";
 import { Container, FlexGrid, Link } from "../elements";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { AccessAlarm, ShoppingCartIcon } from "@mui/icons-material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
 const Header = () => {
   return (
     <>
       <HeaderBg>
         <Container>
           <FlexGrid is_flex justify="space-between">
-            <Logo>
+            <Logo onClick={() => history.push("/")}>
               <Image src={LogoImage} />
             </Logo>
             <FlexGrid is_flex justify="space-between" flex>
               <FlexGrid>
-                <Link fontSize="18px" >쇼핑하기</Link>
+                <Link fontSize="18px" _onClick={() => history.push("/meat")}>
+                  쇼핑하기
+                </Link>
                 <Link fontSize="18px">배송안내</Link>
                 <Link fontSize="18px">이벤트</Link>
               </FlexGrid>
               <FlexGrid>
                 <Link>공지사항</Link>
                 <Link>고객센터</Link>
-                <Link line style={{ fontSize: 13 }}>
-                  |
-                </Link>
-                <Link>로그인</Link>
-                <Link>회원가입</Link>
-                <Link>
-                  장바구니
-                  <ShoppingCartIcon />
+                <Link line>|</Link>
+                <Link _onClick={() => history.push("/login")}>로그인</Link>
+                <Link _onClick={() => history.push("/signup")}>회원가입</Link>
+                <Link fontSize="17px">
+                  <ShoppingCartIcon style={{ verticalAlign: "bottom" }} />
                 </Link>
               </FlexGrid>
             </FlexGrid>
@@ -55,6 +55,9 @@ const Logo = styled.h1`
   margin: 0 20px 0 0;
   padding: 0;
   width: 120px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const Image = styled.img`
   width: 100%;

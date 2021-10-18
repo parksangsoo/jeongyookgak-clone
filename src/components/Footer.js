@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { footerLogo } from "../image";
-import { Container, FlexGrid, Link, Text, Image, Button } from "../elements";
-
+import { Container, FlexGrid, Text, Image } from "../elements";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import SmsIcon from "@mui/icons-material/Sms";
 const Footer = (props) => {
   return (
     <FooterWrap>
@@ -17,8 +18,12 @@ const Footer = (props) => {
             </FlexGrid>
             <FlexGrid is_flex>
               <AppButton>정육각 앱 설치</AppButton>
-              <Text>이용약관</Text>
-              <Text>이용약관</Text>
+              <Text margin="0 15px">
+                <SmsIcon />
+              </Text>
+              <Text>
+                <InstagramIcon />
+              </Text>
             </FlexGrid>
           </FlexGrid>
         </Container>
@@ -49,10 +54,10 @@ const Footer = (props) => {
             </Text>
           </FlexGrid>
           <FlexGrid justify="end">
-            <Text size="12px" align="right">
+            <Text size="12px" align="right" color="#868e96">
               평일: 08:30 - 17:30
             </Text>
-            <Text size="12px" align="right">
+            <Text size="12px" align="right" color="#868e96">
               점심: 12:30 - 13:30
             </Text>
           </FlexGrid>
@@ -66,10 +71,12 @@ const Footer = (props) => {
             <Text size="12px">통신판매업신고번호: 2021-경기김포-0668</Text>
           </FlexGrid>
           <FlexGrid>
-            <Text size="12px" align="right">
+            <Text size="12px" align="right" color="#868e96">
               (토, 일 및 공휴일 휴무)
             </Text>
-            <Text size="13px">카카오톡: @정육각</Text>
+            <Text size="12px" align="right">
+              카카오톡: @정육각
+            </Text>
           </FlexGrid>
         </FlexGrid>
         <FlexGrid is_flex justify="space-between">
@@ -82,17 +89,22 @@ const Footer = (props) => {
             <Text size="12px">이메일: help@yookgak.com</Text>
           </FlexGrid>
         </FlexGrid>
-        <FlexGrid is_flex justify="space-between" margin="20px 0 0 0">
+        <FlexGrid is_flex justify="space-between" margin="6px 0 0 0">
           <FlexGrid is_flex>
             <Text size="12px">
               © 2021 Jeongyookgak Inc. All rights reserved.
             </Text>
           </FlexGrid>
           <FlexGrid is_flex>
-            <AppButton color="black" padding="6px 8px">
+            <AppButton size="12px" color="black" padding="6px 8px">
               자주묻는질문
             </AppButton>
-            <AppButton color="black" padding="6px 8px" margin="0 0 0 10px">
+            <AppButton
+              size="12px"
+              color="black"
+              padding="6px 8px"
+              margin="0 0 0 10px"
+            >
               1:1문의
             </AppButton>
           </FlexGrid>

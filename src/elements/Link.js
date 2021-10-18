@@ -2,19 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const Link = (props) => {
-  const { margin, fontSize, line, children } = props;
+  const { margin, fontSize, line, _onClick, children } = props;
   const styles = {
     margin: margin,
     fontSize: fontSize,
     line: line,
   };
-  return <LinkButton {...styles}>{children}</LinkButton>;
+  return (
+    <LinkButton {...styles} onClick={_onClick}>
+      {children}
+    </LinkButton>
+  );
 };
 
 Link.defaultProps = {
   margin: "0 0 0 14px",
   fontSize: "14px",
   line: false,
+  _onClick: () => {},
 };
 
 const LinkButton = styled.button`
