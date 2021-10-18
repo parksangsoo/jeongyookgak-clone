@@ -13,6 +13,7 @@ const Input = (props) => {
     value,
     is_submit,
     onSubmit,
+    width
   } = props;
 
   if (multiLine) {
@@ -35,6 +36,7 @@ const Input = (props) => {
         {label && <Text margin="0px">{label}</Text>}
         {is_submit ? (
           <ElInput
+            
             type={type}
             placeholder={placeholder}
             onChange={_onChange}
@@ -46,7 +48,7 @@ const Input = (props) => {
             }}
           />
         ) : (
-          <ElInput type={type} placeholder={placeholder} onChange={_onChange} />
+          <ElInput width={width} type={type} placeholder={placeholder} onChange={_onChange} />
         )}
       </Grid>
     </React.Fragment>
@@ -54,6 +56,7 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
+  width: "100%",
   multiLine: false,
   label: false,
   placeholder: "텍스트를 입력해주세요.",
@@ -73,7 +76,7 @@ const ElTextarea = styled.textarea`
 
 const ElInput = styled.input`
   border: 1px solid #212121;
-  width: 100%;
+  ${(props) => (props.width ? `width: ${props.width};` : "")}
   padding: 12px 4px;
   box-sizing: border-box;
 `;

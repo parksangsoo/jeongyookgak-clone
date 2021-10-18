@@ -60,7 +60,6 @@ const MeatList = () => {
 
     return (
         <>
-            
             <FlexGrid>
                 <FlexGrid>
                     <Banner style={{ backgroundImage: `url(${banner_pork})` }}/>
@@ -82,7 +81,6 @@ const MeatList = () => {
                 </FlexGrid>
                 </Container>
             </FlexGrid>
-            
         </>
     );
 };
