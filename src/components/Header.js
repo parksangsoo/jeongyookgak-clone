@@ -15,7 +15,7 @@ const Header = () => {
             </Logo>
             <FlexGrid is_flex justify="space-between" flex>
               <FlexGrid>
-                <Link fontSize="18px">쇼핑하기</Link>
+                <Link fontSize="18px" >쇼핑하기</Link>
                 <Link fontSize="18px">배송안내</Link>
                 <Link fontSize="18px">이벤트</Link>
               </FlexGrid>
