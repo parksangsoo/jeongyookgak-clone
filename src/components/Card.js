@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
 import { cart } from "../image";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Card = (props) => {
   const { src, title, text } = props;
   return (
@@ -10,7 +10,8 @@ const Card = (props) => {
       <ItemBox>
         <Image type="default" src={src} />
         <Cart>
-          <Image type="default" src={cart} />
+          <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
+          {/* <Image type="default" src={cart} /> */}
         </Cart>
       </ItemBox>
       <FlexGrid margin="15px 0 0 0">
@@ -48,8 +49,11 @@ const Cart = styled.div`
   box-shadow: 3px 3px 3px #eee;
   background-color: #fff;
   &:hover {
-    background-color: #ced4da;
+    background-color: #343a40;
     cursor: pointer;
+    * {
+      color: #fff;
+    }
   }
 `;
 export default Card;
