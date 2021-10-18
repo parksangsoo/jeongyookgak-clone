@@ -13,6 +13,7 @@ const Input = (props) => {
     value,
     is_submit,
     onSubmit,
+    name,
   } = props;
 
   if (multiLine) {

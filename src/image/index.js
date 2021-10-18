@@ -10,6 +10,8 @@ import main_item05 from "./main_item05.png";
 import main_item06 from "./main_item06.png";
 import cart from "./cart.png";
 import footerLogo from "./footerLogo.png";
+import naver from "./naver-icon.jpg";
+import kakao from "./kakao.png";
 export {
   LogoImage,
   main_top,
@@ -23,4 +25,6 @@ export {
   main_item06,
   cart,
   footerLogo,
+  naver,
+  kakao,
 };
