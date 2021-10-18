@@ -11,7 +11,7 @@ import Signup from "../pages/Signup";
 import MeatList from "../pages/MeatList";
 import Detail from "../pages/Detail";
 import MeatWrite from "../pages/MeatWrite";
-
+import Cart from "../pages/Cart";
 function App() {
   useEffect(() => {}, []);
 
@@ -25,6 +25,7 @@ function App() {
         <Route path="/meat" exact component={MeatList} />
         <Route path="/detail" exact component={Detail} />
         <Route path="/meatwrite" exact component={MeatWrite} />
+        <Route path="/cart" exact component={Cart} />
         <Footer />
       </ConnectedRouter>
     </React.Fragment>

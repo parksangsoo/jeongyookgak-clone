@@ -2,7 +2,19 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { text, _onClick, is_float, children, margin, width, height, padding,bg, size, position } = props;
+  const {
+    text,
+    _onClick,
+    is_float,
+    children,
+    margin,
+    width,
+    height,
+    padding,
+    bg,
+    size,
+    position,
+  } = props;
 
   if (is_float) {
     return (
@@ -17,9 +29,9 @@ const Button = (props) => {
     width: width,
     height: height,
     padding: padding,
-    bg:bg,
-    size:size,
-    position:position,
+    bg: bg,
+    size: size,
+    position: position,
   };
 
   return (
@@ -45,14 +57,17 @@ Button.defaultProps = {
 const ElButton = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  ${(props) => (props.bg? `background-color: ${props.bg};` : '')};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   color: #ffffff;
   padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: none;
-  ${(props) => (props.margin? `margin: ${props.margin};` : '')};
-  ${(props) => (props.size? `font-size:${props.size}`:'')};
-  ${(props) => (props.position?`position:${props.position}`: "")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.size ? `font-size:${props.size}` : "")};
+  ${(props) => (props.position ? `position:${props.position}` : "")};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const FloatButton = styled.button`
