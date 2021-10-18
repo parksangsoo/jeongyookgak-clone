@@ -32,6 +32,7 @@ const P = styled.p`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.align ? `text-align: ${props.align};` : "")};
+  word-break : break-all;
 `;
 
 export default Text;
