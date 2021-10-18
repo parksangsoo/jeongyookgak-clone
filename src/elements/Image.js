@@ -1,15 +1,6 @@
 import styled from "styled-components";
 import React from "react";
 
-// 이미지 컴포넌트
-/**
- *
- * @param {*} props
- * - shape 이미지를 동그랗게 보여줄 지, 네모로 보여줄 지 모양을 결정합니다.
- * - src 이미지 경로
- * - size 이미지 사이즈
- * @returns
- */
 const Image = (props) => {
   const { type, src, size, width } = props;
 
