@@ -2,12 +2,13 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { type, src, size, width } = props;
+  const { type, src, size, width, padding } = props;
 
   const styles = {
     src: src,
     size: size,
     width: width,
+    padding: padding,
   };
   if (type === "default") {
     return <DefaultImage {...styles} src={src} />;
@@ -36,13 +37,14 @@ const AspectInner = styled.div`
   padding-top: 100%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
   ${(props) => (props.size ? `background-size: ${props.size};` : "")}
 `;
 
 const DefaultImage = styled.img`
-  ${(props) => (props.width ? `width: ${props.width};` : "100%")}
+  ${(props) => (props.width ? `width: ${props.width};` : "100%")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "0")};
   object-fit: cover;
 `;
 
