@@ -28,7 +28,7 @@ const Header = () => {
                 <Link line>|</Link>
                 <Link _onClick={() => history.push("/login")}>로그인</Link>
                 <Link _onClick={() => history.push("/signup")}>회원가입</Link>
-                <Link fontSize="17px">
+                <Link fontSize="17px" _onClick={() => history.push("/cart")}>
                   <ShoppingCartIcon style={{ verticalAlign: "bottom" }} />
                 </Link>
               </FlexGrid>
