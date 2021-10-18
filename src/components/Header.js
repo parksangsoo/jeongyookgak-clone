@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { LogoImage, cart } from "../image";
 import { Container, FlexGrid, Link } from "../elements";
-
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { AccessAlarm, ShoppingCartIcon } from "@mui/icons-material";
 const Header = () => {
   return (
     <>
@@ -28,7 +29,7 @@ const Header = () => {
                 <Link>회원가입</Link>
                 <Link>
                   장바구니
-                  {/* <Image src={cart} style={{ width: "30px" }} /> */}
+                  <ShoppingCartIcon />
                 </Link>
               </FlexGrid>
             </FlexGrid>

@@ -118,7 +118,7 @@ const AppButton = styled.button`
   font-size: ${(props) => (props.size ? props.size : `13px`)};
   background-color: #fff;
   border: ${(props) =>
-    props.color ? `1px solid ${props.color}` : `1px solid #bdbdbd`};
+    props.color ? `1px solid ${props.color}` : `1px solid #eee`};
   border-radius: 3px;
   &:hover {
     cursor: pointer;
