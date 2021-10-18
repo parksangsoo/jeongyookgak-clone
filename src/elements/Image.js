@@ -41,10 +41,12 @@ const AspectOutter = styled.div`
 
 const AspectInner = styled.div`
   position: relative;
-  padding-top: 75%;
+  padding-top: 100%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  ${(props) => (props.size ? `background-size: ${props.size};` : "")}
 `;
 
 export default Image;
