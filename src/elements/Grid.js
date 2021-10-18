@@ -16,6 +16,7 @@ const Grid = (props) => {
     box_shadow,
     hover,
     align_items,
+    border,
   } = props;
 
   const styles = {
@@ -30,6 +31,7 @@ const Grid = (props) => {
     box_shadow: box_shadow,
     hover: hover,
     align_items: align_items,
+    border:border,
   };
 
   return (
@@ -83,6 +85,7 @@ const GridBox = styled.div`
       ? `display: grid; grid-template-columns: repeat(3, 1fr);`
       : ""}
     ${(props) => (props.box_shadow ? `box-shadow:${props.box_shadow};` : "")}
+    ${(props) => (props.border?`border:${props.border}` : "")};
 `;
 
 const GridHoverBox = styled.div`

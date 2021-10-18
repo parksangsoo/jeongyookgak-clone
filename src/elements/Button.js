@@ -2,19 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const {
-    text,
-    _onClick,
-    is_float,
-    children,
-    margin,
-    width,
-    height,
-    padding,
-    bg,
-    size,
-    position,
-  } = props;
+  const { text, _onClick, is_float, children, margin, width, height, padding,bg, size, position, border, bold, float} = props;
 
   if (is_float) {
     return (
@@ -29,9 +17,12 @@ const Button = (props) => {
     width: width,
     height: height,
     padding: padding,
-    bg: bg,
-    size: size,
-    position: position,
+    bg:bg,
+    size:size,
+    position:position,
+    border:border,
+    bold: bold,
+    float: float,
   };
 
   return (
@@ -62,12 +53,15 @@ const ElButton = styled.button`
   padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: none;
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
-  ${(props) => (props.size ? `font-size:${props.size}` : "")};
-  ${(props) => (props.position ? `position:${props.position}` : "")};
+  ${(props) => (props.margin? `margin: ${props.margin};` : '')};
+  ${(props) => (props.size? `font-size:${props.size}`:'')};
+  ${(props) => (props.position?`position:${props.position}`: "")};
+  ${(props) => (props.border?`border:${props.border}` : "")};
+  ${(props) => (props.bold?`font-weight:700` : "")};
   &:hover {
     cursor: pointer;
   }
+  ${(props) => (props.float? `float:${props.float}` : "")};
 `;
 
 const FloatButton = styled.button`
