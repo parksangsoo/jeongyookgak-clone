@@ -6,5 +6,18 @@ import Input from "./Input";
 import Container from "./Container";
 import FlexGrid from "./FlexGrid";
 import Link from "./Link";
+import DefaultInput from "./DefaultInput";
+import Label from "./Label";
 
-export { Grid, Container, Text, Button, Image, Input, FlexGrid, Link };
+export {
+  Grid,
+  Container,
+  Text,
+  Button,
+  Image,
+  Input,
+  FlexGrid,
+  Link,
+  DefaultInput,
+  Label,
+};

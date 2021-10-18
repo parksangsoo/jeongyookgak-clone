@@ -13,7 +13,7 @@ const Input = (props) => {
     value,
     is_submit,
     onSubmit,
-    width
+    width,
   } = props;
 
   if (multiLine) {
@@ -36,7 +36,6 @@ const Input = (props) => {
         {label && <Text margin="0px">{label}</Text>}
         {is_submit ? (
           <ElInput
-            
             type={type}
             placeholder={placeholder}
             onChange={_onChange}
@@ -48,7 +47,12 @@ const Input = (props) => {
             }}
           />
         ) : (
-          <ElInput width={width} type={type} placeholder={placeholder} onChange={_onChange} />
+          <ElInput
+            width={width}
+            type={type}
+            placeholder={placeholder}
+            onChange={_onChange}
+          />
         )}
       </Grid>
     </React.Fragment>

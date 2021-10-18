@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, padding, align } = props;
+  const { bold, color, size, children, margin, padding, align, flex } = props;
 
   const styles = {
     bold: bold,
     color: color,
     size: size,
-    margin,
-    padding,
-    align,
+    margin: margin,
+    padding: padding,
+    align: align,
+    flex: flex,
   };
   return <P {...styles}>{children}</P>;
 };
@@ -23,6 +24,7 @@ Text.defaultProps = {
   margin: false,
   padding: 0,
   align: "left",
+  flex: false,
 };
 
 const P = styled.p`
@@ -32,7 +34,9 @@ const P = styled.p`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.align ? `text-align: ${props.align};` : "")};
+  ${(props) => (props.flex ? `flex: 1` : "")};
   word-break : break-all;
+  
 `;
 
 export default Text;
