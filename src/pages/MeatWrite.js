@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Container, FlexGrid, Text, Image, Input, Button } from '../elements/index';
 import Upload from "../shared/Upload";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as imageActions } from "../redux/modules/image";
+import { actionCreators as meatActions } from "../redux/modules/post";
 
 const MeatWrite = () => {
     const dispatch = useDispatch();
@@ -28,10 +28,7 @@ const MeatWrite = () => {
             window.alert("타이틀을 넣어주세요!.");
             return
         }
-        if(!preview){
-            window.alert("이미지를 넣어주세요!.");
-            return
-        }
+        
         if(!category){
             window.alert("카테고리를 넣어주세요!.");
             return
@@ -41,7 +38,14 @@ const MeatWrite = () => {
             return
         }
         
+        const meat = {
+            src: "main_item01",
+            title: title,
+            category: category,
+            text: price
+        }
 
+        dispatch(meatActions.addMeatMiddleware(meat))
     }
 
     return (

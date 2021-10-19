@@ -74,7 +74,7 @@ const MeatList = () => {
                 {!pork && beef && !kfc?(
                     <FlexGrid is_flex justify="space-between">
                         {meats.map((meat)=>{
-                            if(meat.category === "chicken"){
+                            if(meat.category === "beaf"){
                                 return <Card key={meat.id} {...meat}/>
                             }
                             return null;
@@ -84,7 +84,7 @@ const MeatList = () => {
                 {!pork && !beef && kfc?(
                     <FlexGrid is_flex justify="space-between">
                         {meats.map((meat)=>{
-                            if(meat.category === "beaf"){
+                            if(meat.category === "chicken"){
                                 return <Card key={meat.id} {...meat}/>
                             }
                             return null;
