@@ -2,18 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useDispatch } from "react-redux";
+import { actionCreators as cartActions } from "../redux/modules/cart";
 
-// @mida_작업 // Card UI 및 기능
 const Card = (props) => {
-  const { src, title, text } = props;
+  const { src, title, text, item } = props;
+  const dispatch = useDispatch();
+
+  const onClick = (e, item) => {
+    e.stopPropagation();
+    dispatch(cartActions.postCart(item));
+  };
+
   return (
     <>
-      <ItemBox>
+      <ItemWrap>
         <Image type="default" src={src} />
-        <Cart>
+        <Cart onClick={(e) => onClick(e, item)}>
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
         </Cart>
-      </ItemBox>
+      </ItemWrap>
       <FlexGrid margin="15px 0 0 0">
         <Text size="18px" bold>
           {title}
@@ -26,11 +34,12 @@ const Card = (props) => {
   );
 };
 
-const ItemBox = styled.div`
+const ItemWrap = styled.div`
   position: relative;
   padding: 30px;
   background-color: #f9f7f8;
 `;
+
 const Cart = styled.div`
   position: absolute;
   right: 20px;

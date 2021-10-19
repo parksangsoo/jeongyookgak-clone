@@ -6,6 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import ClearIcon from "@mui/icons-material/Clear";
 const CartItem = (props) => {
+  console.log("CartItem == ", props);
   return (
     <>
       <TableGridWrap borderTop="1px solid #000">

@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { LogoImage } from "../image";
 import { Container, FlexGrid, Link } from "../elements";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 // @mida_작업__Header UI 및 기능__
 const Header = () => {
+  const cart_count = useSelector((state) => state.cart.cart_count);
   return (
     <>
       <HeaderBg>
@@ -30,7 +32,16 @@ const Header = () => {
                 <Link _onClick={() => history.push("/login")}>로그인</Link>
                 <Link _onClick={() => history.push("/signup")}>회원가입</Link>
                 <Link fontSize="17px" _onClick={() => history.push("/cart")}>
-                  <ShoppingCartIcon style={{ verticalAlign: "bottom" }} />
+                  <CartWrap>
+                    <ShoppingCartIcon
+                      style={{ verticalAlign: "bottom", fontSize: "2rem" }}
+                    />
+                    {cart_count > 0 && (
+                      <CartCount>
+                        <Text color="#fff">{cart_count}</Text>
+                      </CartCount>
+                    )}
+                  </CartWrap>
                 </Link>
               </FlexGrid>
             </FlexGrid>
@@ -63,6 +74,27 @@ const Logo = styled.h1`
 const Image = styled.img`
   width: 100%;
   margin-top: 20px;
+`;
+const CartWrap = styled.div`
+  position: relative;
+`;
+const CartCount = styled.div`
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #e03131;
+`;
+
+const Text = styled.span`
+  padding-top: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  vertical-align: bottom;
+  color: #fff;
 `;
 
 export default Header;

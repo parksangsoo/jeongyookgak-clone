@@ -39,7 +39,7 @@ const Main = () => {
                   key={item.id}
                   _onClick={() => onClick(item.id)}
                 >
-                  <Card {...item} />
+                  <Card {...item} item={item} />
                 </FlexGrid>
               );
             })}
