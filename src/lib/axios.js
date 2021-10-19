@@ -17,7 +17,7 @@ instance.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  // 게시물 불러오기
+  
   getMeat: () => instance.get('/meats'),
-
+  addMeat: (contents) => instance.post('/meats',contents),
 };
