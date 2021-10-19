@@ -8,6 +8,7 @@ import FlexGrid from "./FlexGrid";
 import Link from "./Link";
 import DefaultInput from "./DefaultInput";
 import Label from "./Label";
+import TextButton from "./TextButton";
 
 export {
   Grid,
@@ -20,4 +21,5 @@ export {
   Link,
   DefaultInput,
   Label,
+  TextButton,
 };
