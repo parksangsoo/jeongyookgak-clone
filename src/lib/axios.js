@@ -20,6 +20,7 @@ export const apis = {
   // 게시물 불러오기
   getMeat: () => instance.get("/meats"),
   addMeat: (contents) => instance.post("/meats", contents),
+  delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`),
 };
 
 // @mida_작업__axios api__
