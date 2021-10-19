@@ -6,27 +6,24 @@ import {
   Text,
   Button,
   FlexGrid,
+  TextButton,
 } from "../elements/index";
+import SelectLabels from "../components/SelectBox";
 import styled from "styled-components";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {history} from "../redux/configureStore";
+import { history } from "../redux/configureStore";
 import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
+import ItemDesc from "../components/ItemDesc";
 
-import {
-  main_top,
-  main_img01,
-  main_img02,
-  main_item01,
-  main_item02,
-  main_item03,
-  main_item04,
-  main_item05,
-  main_item06,
-} from "../image";
+import { main_item01 } from "../image";
 
 const Detail = (props) => {
   const [count, setCount] = useState(1);
+  const [menu, setMenu] = useState(false);
+
+  const menuSelect = (v) => {
+    setMenu(v);
+  };
 
   const decrement = () => {
     if (count > 0) {
@@ -49,36 +46,11 @@ const Detail = (props) => {
       sumImgUrl: "1111",
       detailImgUrl: "1111",
     },
-    {
-      id: 2,
-      src: main_item02,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-    },
-    {
-      id: 3,
-      src: main_item03,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-    },
-    {
-      id: 4,
-      src: main_item04,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-    },
-    {
-      id: 5,
-      src: main_item05,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-    },
-    {
-      id: 6,
-      src: main_item06,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-    },
+  ];
+  const optionData = [
+    { id: 0, option: "얇게" },
+    { id: 1, option: "중간" },
+    { id: 2, option: "두껍게" },
   ];
   return (
     <React.Fragment>
@@ -120,9 +92,9 @@ const Detail = (props) => {
               {/* <Grid margin ="29px 0px 0px 0px" height="52px" is_flex align_items="start"> */}
               <FlexGrid is_flex margin="20px 0px">
                 <OptionText>옵션</OptionText>
-                
+
                 <OptionGrid>
-                  <Button
+                  {/* <Button
                     border="1px solid #7c7c7c"
                     size="16px"
                     bg="#1c1c1c"
@@ -131,7 +103,8 @@ const Detail = (props) => {
                     padding="0px"
                   >
                     보통(16mm)
-                  </Button>
+                  </Button> */}
+                  <SelectLabels optionData />
                 </OptionGrid>
               </FlexGrid>
               {/* </Grid> */}
@@ -189,8 +162,50 @@ const Detail = (props) => {
         </Container>
       </Grid>
       <Container>
-        <CommentWrite/>
-        <CommentList/>
+        <FlexGrid
+          is_flex
+          justify="center"
+          padding="36.5px"
+          style={{ borderBottom: "1px solid #979797" }}
+        >
+          {/* <Grid width="auto" is_flex height="109px"> */}
+          <TextButton
+            size="18px"
+            margin_top="15px"
+            margin_right="63.5px"
+            value={!menu}
+            _onClick={() => {
+              menuSelect(false);
+            }}
+          >
+            상품설명
+          </TextButton>
+          <TextButton
+            size="18px"
+            margin_top="15px"
+            margin_right="63.5px"
+            value={menu}
+            _onClick={() => {
+              menuSelect(true);
+            }}
+          >
+            상품리뷰
+          </TextButton>
+          <TextButton size="18px" margin_top="15px">
+            상품정보안내
+          </TextButton>
+          {/* </Grid> */}
+        </FlexGrid>
+      </Container>
+      <Container>
+        {menu ? (
+          <>
+            <CommentWrite />
+            <CommentList />
+          </>
+        ) : (
+          <ItemDesc />
+        )}
       </Container>
     </React.Fragment>
   );
