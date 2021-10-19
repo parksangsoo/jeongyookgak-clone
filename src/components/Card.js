@@ -7,7 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Card = (props) => {
   const { src, title, text } = props;
   return (
-    <CardWrap>
+    <>
       <ItemBox>
         <Image type="default" src={src} />
         <Cart>
@@ -22,17 +22,10 @@ const Card = (props) => {
           {text}
         </Text>
       </FlexGrid>
-    </CardWrap>
+    </>
   );
 };
 
-const CardWrap = styled.div`
-  width: 32%;
-  margin-top: 30px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
 const ItemBox = styled.div`
   position: relative;
   padding: 30px;

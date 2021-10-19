@@ -20,3 +20,9 @@ export const apis = {
   // 게시물 불러오기
   getMeat: () => instance.get("/meats"),
 };
+
+// @mida_작업__axios api__
+export const apiMida = {
+  get: (url = "/") => instance.get(`${url}`),
+  post: (url = "/", body = {}) => instance.post(`${url}`, body),
+};

@@ -2,12 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { Text, FlexGrid } from "../elements";
 import { kakao, naver } from "../image";
+import { checkValue } from "../shared/regExp";
 
 // @mida_작업__Login UI 및 기능__
 const Login = (props) => {
   const [state, setState] = React.useState({ useremail: "", password: "" });
+
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const onClick = () => {
+    if (!checkValue(state.useremail)) {
+      alert("아이디는 영문 숫자 조합 6자리 이상으로 입력해주세요");
+      return;
+    }
+    if (!checkValue(state.password)) {
+      alert("비밀번호는 영문 숫자 조합 6자리 이상으로 입력해주세요");
+      return;
+    }
+    if (state.useremail === "" || state.password === "") {
+      alert("내용을 모두 입력해주세요");
+      return;
+    }
+    console.log("login 성공");
   };
   return (
     <>
@@ -38,7 +56,7 @@ const Login = (props) => {
             />
           </FlexGrid>
           <FlexGrid margin="8px 0 0 0">
-            <Button>로그인</Button>
+            <Button onClick={onClick}>로그인</Button>
           </FlexGrid>
           <FlexGrid margin="60px 0 0 0">
             <Text size="18px" bold>
