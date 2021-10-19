@@ -25,6 +25,7 @@ function App() {
         <Route path="/meat" exact component={MeatList} />
         <Route path="/detail" exact component={Detail} />
         <Route path="/meatwrite" exact component={MeatWrite} />
+        <Route path="/meatwrite/:id" exact component={MeatWrite} />
         <Route path="/cart" exact component={Cart} />
         <Footer />
       </ConnectedRouter>

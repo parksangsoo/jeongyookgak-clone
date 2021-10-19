@@ -6,10 +6,12 @@ import { actionCreators as imageActions } from './image';
 const SET_MEAT = "SET_MEAT";
 const ADD_MEAT = "ADD_MEAT";
 const DEL_MEAT = "DEL_MEAT";
+const EDIT_MEAT = "EDIT_MEAT";
 
 const setMeat = createAction(SET_MEAT, (meat_list) => ({meat_list}))
 const addMeat = createAction(ADD_MEAT, (meat_info) => ({meat_info}))
 const delMeat = createAction(DEL_MEAT, (meat_id) => ({meat_id}))
+const editMeat = createAction(EDIT_MEAT,(meat_id,meat_info) => ({meat_id,meat_info}))
 
 const initialState = {
     list:[]
@@ -46,11 +48,22 @@ const delMeatMIddleware = (meat_id) => {
   return(dispatch, getState, {history}) => {
     apis.delMeat(meat_id).then(()=>{
       dispatch(delMeat(meat_id));
-      window.alert("삭제 완료했습니다.");
       history.replace("/");
     }).catch((err)=>{
       console.log(err)
     })
+  }
+}
+
+const editMeatMIddleware = (meat_id,meat) => {
+  return(dispatch, getState, {history}) => {
+    apis.editMeat(meat_id,meat).then(()=> {
+      dispatch(editMeat(meat_id,meat));
+      history.replace("/meat");
+    }).catch((err)=> {
+      console.log(err);
+    })
+
   }
 }
 
@@ -73,9 +86,12 @@ export default handleActions(
           if(idx !== -1){
             draft.list.splice(idx, 1);
           }
+        }),
+        [EDIT_MEAT]: (state, action) => 
+        produce(state, (draft)=> {
+          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
+          draft.list[idx] = {...draft.list[idx],...action.payload.meat_info}
         })
-
-        
     },
     initialState
 );
@@ -86,7 +102,9 @@ const actionCreators = {
     addMeat,
     addMeatMiddleware,
     delMeat,
-    delMeatMIddleware
+    delMeatMIddleware,
+    editMeat,
+    editMeatMIddleware,
   };
   
 export { actionCreators };
