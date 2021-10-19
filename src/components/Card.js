@@ -5,8 +5,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useDispatch } from "react-redux";
 import { actionCreators as cartActions } from "../redux/modules/cart";
 
+// @mida_작업__Card UI 및 기능__
 const Card = (props) => {
-  const { src, title, text, item } = props;
+  const { sumImgUrl, title, text, item } = props;
   const dispatch = useDispatch();
 
   const onClick = (e, item) => {
@@ -17,7 +18,7 @@ const Card = (props) => {
   return (
     <>
       <ItemWrap>
-        <Image type="default" src={src} />
+        <Image type="default" src={sumImgUrl} />
         <Cart onClick={(e) => onClick(e, item)}>
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
         </Cart>

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Container, FlexGrid } from "../elements";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { history } from "../redux/configureStore";
+
+// @mida_작업__NoItem UI 및 기능__
 const NoItem = (props) => {
   return (
     <Container>

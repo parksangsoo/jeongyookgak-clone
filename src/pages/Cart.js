@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, FlexGrid, Text, Button } from "../elements";
+import { Container, FlexGrid, Text } from "../elements";
 import CartItem from "../components/CartItem";
+import Price from "../components/Price";
 import NoItem from "../components/NoItem";
 import { useSelector } from "react-redux";
 
@@ -23,70 +24,19 @@ const Cart = (props) => {
           {cart_list.length > 0 ? (
             <>
               <FlexGrid width="72%">
+                <TableGridWrap borderTop="1px solid #000">
+                  <TableGrid width="150px"></TableGrid>
+                  <TableGrid flex>상품정보</TableGrid>
+                  <TableGrid width="150px">수량</TableGrid>
+                  <TableGrid width="120px">가격</TableGrid>
+                  <TableGrid width="70px"></TableGrid>
+                </TableGridWrap>
                 {cart_list.map((item) => {
-                  return <CartItem key={item.id} item={item} />;
+                  return <CartItem key={item.itemId} {...item} />;
                 })}
               </FlexGrid>
               <FlexGrid width="24%">
-                <BorderGrid padding="27px">
-                  <FlexGrid is_flex justify="space-between">
-                    <Text size="14px">총 상품 금액</Text>
-                    <Text size="14px">19,800원</Text>
-                  </FlexGrid>
-                  <BorderGrid
-                    margin="15px 0 0 0"
-                    padding="15px 0 0 0"
-                    borderTop="1px solid #e1dedf"
-                  />
-                  <FlexGrid is_flex justify="space-between">
-                    <Text size="14px">총 배송비</Text>
-                    <Text>0원</Text>
-                  </FlexGrid>
-                  <FlexGrid is_flex justify="end" margin="10px 0 0 0">
-                    <Text size="12px" margin="0 20px 0 0" color="#9b9b9b">
-                      기본 배송비
-                    </Text>
-                    <Text size="12px" color="#9b9b9b">
-                      2,500원
-                    </Text>
-                  </FlexGrid>
-                  <FlexGrid is_flex justify="end" margin="10px 0 0 0">
-                    <Text size="12px" margin="0 20px 0 0" color="#4a90e2">
-                      첫구매 무료배송
-                    </Text>
-                    <Text size="12px" color="#4a90e2">
-                      -100%
-                    </Text>
-                  </FlexGrid>
-                  <BorderGrid
-                    margin="15px 0 0 0"
-                    padding="15px 0 0 0"
-                    borderTop="1px solid #e1dedf"
-                  />
-                  <FlexGrid is_flex justify="end">
-                    <Text size="12px" color="#4a90e2">
-                      첫구매 무료배송 혜택이 적용되었습니다.
-                    </Text>
-                  </FlexGrid>
-                  <FlexGrid margin="20px 0 0 0">
-                    <Text size="12px" bold align="right">
-                      예상 결제 금액
-                    </Text>
-                    <Text size="24px" bold align="right" color="#d0021b">
-                      19,800원
-                    </Text>
-                  </FlexGrid>
-                  <Button bg="#d0021b" margin="15px 0 0 0" padding="15px">
-                    <Text bold align="center" color="#fff">
-                      전체상품 주문하기
-                    </Text>
-                  </Button>
-                  <Button bg="#acacac" margin="15px 0 0 0" padding="15px">
-                    <Text bold align="center" color="#fff">
-                      쇼핑계속하기
-                    </Text>
-                  </Button>
-                </BorderGrid>
+                <Price />
               </FlexGrid>
             </>
           ) : (
@@ -97,13 +47,23 @@ const Cart = (props) => {
     </>
   );
 };
-
-const BorderGrid = styled.div`
-  margin: ${(props) => (props.margin ? props.margin : "0")};
-  padding: ${(props) => (props.padding ? props.padding : "0")};
-  border-top: ${(props) =>
-    props.borderTop ? props.borderTop : "1px solid #000"};
-  background-color: #f8f8f8;
+const TableGridWrap = styled.div`
+  display: flex;
+  justify-content: ${(props) =>
+    props.justify ? props.justify : "space-between"};
+  align-items: center;
+  ${(props) => (props.borderTop ? `border-top:${props.borderTop}` : "0")};
+  ${(props) =>
+    props.borderBottom ? `border-bottom:${props.borderBottom}` : "0"};
+`;
+const TableGrid = styled.div`
+  width: ${(props) => (props.width ? props.width : "auto")};
+  flex: ${(props) => (props.flex ? "1" : "")};
+  flex-wrap: wrap;
+  padding: ${(props) => (props.padding ? props.padding : "20px")};
+  text-align: center;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "13px")};
+  font-weight: ${(props) => (props.bold ? props.bold : "400")};
 `;
 
 export default Cart;

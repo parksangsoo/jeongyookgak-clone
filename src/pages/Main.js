@@ -36,8 +36,8 @@ const Main = () => {
                 <FlexGrid
                   width="32%"
                   margin="30px 0 0 0"
-                  key={item.id}
-                  _onClick={() => onClick(item.id)}
+                  key={item.itemId}
+                  _onClick={() => onClick(item.itemId)}
                 >
                   <Card {...item} item={item} />
                 </FlexGrid>
