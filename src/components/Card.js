@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
+import { cart } from "../image";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useDispatch } from "react-redux";
 import { actionCreators as cartActions } from "../redux/modules/cart";

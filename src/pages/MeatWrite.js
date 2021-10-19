@@ -1,15 +1,23 @@
-import React,{useState} from 'react';
-import { Container, FlexGrid, Text, Image, Input, Button } from '../elements/index';
+import React,{useState,useEffect} from 'react';
+import { Container, FlexGrid, Text, Input, Button } from '../elements/index';
 import Upload from "../shared/Upload";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as meatActions } from "../redux/modules/post";
 
-const MeatWrite = () => {
+const MeatWrite = (props) => {
+
     const dispatch = useDispatch();
-    const[title,setTitle] = useState('');
-    const[category,setCategory] = useState('');
-    const[price,setPrice] = useState('');
+    const meat_id = props.match.params.id;
+    const editmode = meat_id ? true : false;
     const preview = useSelector((state) => state.image.preview);
+    const meat_list = useSelector((state) => state.post.list);
+    const _meat = editmode ? meat_list.find((p) => p.id.toString() === meat_id): null;
+    const [title,setTitle] = useState(_meat ? _meat.title : "");
+    const [category,setCategory] = useState(_meat ? _meat.category : "");
+    const [price,setPrice] = useState(_meat ? _meat.text : "");
+    const { history } = props;
+
+    
 
     const changeTitle = (e) => {
         setTitle(e.target.value)
@@ -23,7 +31,7 @@ const MeatWrite = () => {
         setPrice(e.target.value)
     }
 
-    const addMeat = (e) => {
+    const addMeat = () => {
         if(!title){
             window.alert("타이틀을 넣어주세요!.");
             return
@@ -48,6 +56,40 @@ const MeatWrite = () => {
         dispatch(meatActions.addMeatMiddleware(meat))
     }
 
+    const editMeat = () => {
+        if(!title){
+            window.alert("타이틀을 넣어주세요!.");
+            return
+        }
+        
+        if(!category){
+            window.alert("카테고리를 넣어주세요!.");
+            return
+        }
+        if(!price){
+            window.alert("가격을 넣어주세요!.");
+            return
+        }
+        
+        const meat = {
+            src: "main_item01",
+            title: title,
+            category: category,
+            text: price
+        }
+
+        dispatch(meatActions.editMeatMIddleware(meat_id,meat))
+    }
+
+    useEffect(()=>{
+        if(editmode && !_meat){
+            window.alert("포스트 정보가 없어요!");
+            history.goBack();
+
+            return;
+        }
+    })
+
     return (
         <>
             <Container>
@@ -71,7 +113,7 @@ const MeatWrite = () => {
                         <Input value={price} width="50%" _onChange={changePrice}/>
                     </FlexGrid>
                     <FlexGrid>
-                        <Button width="50%" _onClick={addMeat}>고기 입력</Button>
+                        {editmode?(<Button width="50%" _onClick={editMeat}>고기 수정</Button>):(<Button width="50%" _onClick={addMeat}>고기 입력</Button>)}
                     </FlexGrid>
                 </FlexGrid>
             </Container>

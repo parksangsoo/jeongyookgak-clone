@@ -21,6 +21,7 @@ export const apis = {
   getMeat: () => instance.get("/meats"),
   addMeat: (contents) => instance.post("/meats", contents),
   delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`),
+  editMeat: (meat_id, contents) => instance.put(`/meats/${meat_id}`, contents),
 };
 
 // @mida_작업__axios api__
