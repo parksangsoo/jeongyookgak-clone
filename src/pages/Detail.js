@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
   Grid,
   Container,
@@ -14,13 +15,28 @@ import { history } from "../redux/configureStore";
 import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
 import ItemDesc from "../components/ItemDesc";
-
+import {actionCreators as postActions} from "../redux/modules/post";
 import { main_item01 } from "../image";
+import { off } from "process";
 
 const Detail = (props) => {
+  const dispatch = useDispatch();
+  const item = useSelector(state=>state.post.list[0]);
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
-
+  const data = [
+    {
+      id: 0,
+      src: main_item01,
+      title: "초신선 돼지 삼겹살 구이용",
+      text: "기준가 16,800원/600g",
+      category: 1,
+      defaultprice: "기준가 19,800원(600g)",
+      detailprice: "100g당 3,300원",
+      sumImgUrl: "1111",
+      detailImgUrl: main_item01,
+    },
+  ];
   const menuSelect = (v) => {
     setMenu(v);
   };
@@ -33,25 +49,11 @@ const Detail = (props) => {
   const increment = () => {
     setCount(count + 1);
   };
-
-  const data = [
-    {
-      id: 1,
-      src: main_item01,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-      category: 1,
-      defaultprice: "16800원",
-      detailprice: "16800원",
-      sumImgUrl: "1111",
-      detailImgUrl: "1111",
-    },
-  ];
-  const optionData = [
-    { id: 0, option: "얇게" },
-    { id: 1, option: "중간" },
-    { id: 2, option: "두껍게" },
-  ];
+  React.useEffect(()=>{
+    dispatch(postActions.setDetail(data));
+  },[]);
+  
+  if(item){
   return (
     <React.Fragment>
       <Grid bg="#1c1c1c" padding="0px 0px 50px 0px">
@@ -64,7 +66,7 @@ const Detail = (props) => {
             margin="auto"
           >
             <Grid width="500px" height="500px" margin="0px, 70px, 0px, 30px">
-              <Image src={data[0].src}></Image>
+              <Image src={item.detailImgUrl}></Image>
             </Grid>
             <Grid width="380px" height="500px" margin="0px">
               <h2
@@ -75,13 +77,13 @@ const Detail = (props) => {
                   wordBreak: "keep-all",
                 }}
               >
-                초신선 무항생제 돼지 삼겹살 구이용
+                {item.title}
               </h2>
               <Text size="16px" margin="20px 0px" color="#9b9b9b" bold>
-                100g당 3,300원
+                {item.detailprice}
               </Text>
               <Text size="24px" margin="6px 0px" color="#fff" bold>
-                기준가 19,800원(600g)
+                {item.defaultprice}
               </Text>
               <Grid
                 width="380px"
@@ -89,25 +91,13 @@ const Detail = (props) => {
                 bg="#4a4a4a"
                 margin="26px 0px 0px 0px"
               ></Grid>
-              {/* <Grid margin ="29px 0px 0px 0px" height="52px" is_flex align_items="start"> */}
               <FlexGrid is_flex margin="20px 0px">
                 <OptionText>옵션</OptionText>
 
                 <OptionGrid>
-                  {/* <Button
-                    border="1px solid #7c7c7c"
-                    size="16px"
-                    bg="#1c1c1c"
-                    position="relative"
-                    height="50px"
-                    padding="0px"
-                  >
-                    보통(16mm)
-                  </Button> */}
-                  <SelectLabels optionData />
+                  <SelectLabels  />        {/*옵션 설정*/}
                 </OptionGrid>
               </FlexGrid>
-              {/* </Grid> */}
               <FlexGrid is_flex margin="20px 0px">
                 <OptionText>수량</OptionText>
                 <OptionGrid>
@@ -204,11 +194,13 @@ const Detail = (props) => {
             <CommentList />
           </>
         ) : (
-          <ItemDesc />
+          null
+          // <ItemDesc src={item.detailImgUrl}/>
         )}
       </Container>
     </React.Fragment>
   );
+} return null;
 };
 
 const OptionText = styled.p`
@@ -241,12 +233,6 @@ const CountGrid = styled.div`
   align-items: "center";
   border: solid #7c7c7c;
   border-width: 1px 0px;
-`;
-const BuyButton = styled.button`
-  width: 180px;
-  height: 60px;
-  size: 16px;
-  font-weight: 700;
 `;
 
 export default Detail;

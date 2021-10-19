@@ -3,7 +3,7 @@ import {Grid, Image} from "../elements/index";
 const ItemDesc = (props) => {
     return (
         <Grid height="auto">
-            <Image/>
+            <Image src={props.src}/>
       </Grid>
     );
 };
