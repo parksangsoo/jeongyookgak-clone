@@ -1,17 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Input } from "../elements/index";
-import {dispatch} from "../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentWrite = (props) => {
   const [content, setContent] = React.useState("");
+  const dispatch = useDispatch();
   const onChange = (e) => {
     setContent(e.target.value);
   };
-
-  const resist= () => {
+  const date = new Date();
+  const resist = () => {
     // dispatch();
-  }
-  
+    if (content) {
+      dispatch(
+        commentActions.addComment({
+          content: content,
+          id: date,
+          writer: "만준",
+          creatAt: date,
+        })
+      );
+      setContent("");
+    } else {
+      window.alert("댓글을 입력해주세요");
+    }
+  };
+
   return (
     <Grid margin="39px auto" width="980px" height="270px">
       <ContentGrid>

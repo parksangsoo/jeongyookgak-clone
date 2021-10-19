@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const SelectBox = (props) => {
   const optionData = [
-    { id: 0, option: "얇게" },
-    { id: 1, option: "중간" },
-    { id: 2, option: "두껍게" },
+    { id: 0, option: "보통(16mm)" },
+    { id: 1, option: "얇게(11mm)" },
+    { id: 2, option: "두껍(24mm)" },
   ];
 
   return (
