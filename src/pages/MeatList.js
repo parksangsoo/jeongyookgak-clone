@@ -62,7 +62,7 @@ const MeatList = () => {
                         onClick={changeKfc}>닭</MeatBtn>
                 </FlexGrid>
                 {pork && !beef && !kfc?(
-                    <FlexGrid is_flex justify="space-between">
+                    <FlexGrid is_flex>
                         {meats.map((meat)=>{
                             if(meat.category === "pork"){
                                 return <Card key={meat.id} {...meat}/>
@@ -72,7 +72,7 @@ const MeatList = () => {
                     </FlexGrid>
                 ):("")}
                 {!pork && beef && !kfc?(
-                    <FlexGrid is_flex justify="space-between">
+                    <FlexGrid is_flex>
                         {meats.map((meat)=>{
                             if(meat.category === "beaf"){
                                 return <Card key={meat.id} {...meat}/>
@@ -82,7 +82,7 @@ const MeatList = () => {
                     </FlexGrid>
                 ):("")}
                 {!pork && !beef && kfc?(
-                    <FlexGrid is_flex justify="space-between">
+                    <FlexGrid is_flex>
                         {meats.map((meat)=>{
                             if(meat.category === "chicken"){
                                 return <Card key={meat.id} {...meat}/>
