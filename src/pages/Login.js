@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Text, FlexGrid } from "../elements";
 import { kakao, naver } from "../image";
+
+// @mida_작업__Login UI 및 기능__
 const Login = (props) => {
   const [state, setState] = React.useState({ useremail: "", password: "" });
   const onChange = (e) => {

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Container, FlexGrid, Text, Button } from "../elements";
 import CartItem from "../components/CartItem";
+
+// @mida_작업__Cart UI 및 기능__
 const Cart = (props) => {
   return (
     <>

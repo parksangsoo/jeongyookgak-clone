@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/meat" exact component={MeatList} />
-        <Route path="/detail" exact component={Detail} />
+        <Route path="/detail/:id" exact component={Detail} />
         <Route path="/meatwrite" exact component={MeatWrite} />
         <Route path="/cart" exact component={Cart} />
         <Footer />

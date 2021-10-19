@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Text, FlexGrid, DefaultInput, Button } from "../elements";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+
+// @mida_작업__Signup UI 및 기능__
 const Signup = (props) => {
   const [state, setState] = React.useState({
     useremail: "",

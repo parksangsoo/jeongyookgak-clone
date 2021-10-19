@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
-import { cart } from "../image";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+// @mida_작업 // Card UI 및 기능
 const Card = (props) => {
   const { src, title, text } = props;
   return (
@@ -11,7 +12,6 @@ const Card = (props) => {
         <Image type="default" src={src} />
         <Cart>
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
-          {/* <Image type="default" src={cart} /> */}
         </Cart>
       </ItemBox>
       <FlexGrid margin="15px 0 0 0">

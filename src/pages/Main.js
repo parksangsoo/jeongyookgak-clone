@@ -14,7 +14,9 @@ import {
   main_item06,
 } from "../image";
 
+// @mida_작업__Main UI 및 기능__
 const Main = (props) => {
+  const [state, setState] = React.useState({});
   const data = [
     {
       id: 1,
@@ -53,6 +55,10 @@ const Main = (props) => {
       text: "기준가 16,800원/600g",
     },
   ];
+
+  const onClick = (id) => {
+    console.log("click item id ? ", id);
+  };
   return (
     <>
       <MainTop src={main_top} />
@@ -71,7 +77,13 @@ const Main = (props) => {
           </Text>
           <FlexGrid is_flex justify="space-between">
             {data.map((item) => {
-              return <Card key={item.id} {...item} />;
+              return (
+                <Card
+                  key={item.id}
+                  {...item}
+                  onClick={() => onClick(item.id)}
+                />
+              );
             })}
           </FlexGrid>
         </FlexGrid>

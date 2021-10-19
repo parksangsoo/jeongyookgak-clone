@@ -5,6 +5,7 @@ import { LogoImage } from "../image";
 import { Container, FlexGrid, Link } from "../elements";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+// @mida_작업__Header UI 및 기능__
 const Header = () => {
   return (
     <>
