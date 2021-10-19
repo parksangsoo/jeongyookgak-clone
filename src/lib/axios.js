@@ -20,4 +20,6 @@ export const apis = {
   
   getMeat: () => instance.get('/meats'),
   addMeat: (contents) => instance.post('/meats',contents),
+  delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`)
+  
 };
