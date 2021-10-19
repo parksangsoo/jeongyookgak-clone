@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 import { Container, Text, FlexGrid, DefaultInput, Button } from "../elements";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import { checkValue } from "../shared/regExp";
+
+// @mida_작업__Signup UI 및 기능__
 const Signup = (props) => {
   const [state, setState] = React.useState({
     useremail: "",
@@ -16,34 +20,28 @@ const Signup = (props) => {
   };
 
   const onClick = () => {
-    if (state.useremail === "") {
-      alert("아이디를 입력해주세요");
+    if (!checkValue(state.useremail)) {
+      alert("아이디는 영문 숫자 조합 6자리 이상으로 입력해주세요");
       return;
     }
-    if (state.password === "") {
-      alert("비밀번호를 입력해주세요");
-      return;
-    }
-    if (state.passwordCheck === "") {
-      alert("비밀번호를 한번 더 입력해주세요");
+    if (!checkValue(state.password)) {
+      alert("비밀번호는 영문 숫자 조합 6자리 이상으로 입력해주세요");
       return;
     }
     if (state.password !== state.passwordCheck) {
       alert("비밀번호가 다릅니다. 다시 확인해주세요");
       return;
     }
-    if (state.username === "") {
-      alert("이름을 입력해주세요");
+    if (
+      state.useremail === "" ||
+      state.password === "" ||
+      state.passwordCheck === "" ||
+      state.username === ""
+    ) {
+      alert("내용을 모두 입력해주세요");
       return;
     }
-    if (
-      state.useremail !== "" &&
-      state.password !== "" &&
-      state.passwordCheck !== "" &&
-      state.username !== ""
-    ) {
-      console.log("회원가입완료");
-    }
+    console.log("회원가입완료");
   };
   return (
     <>
@@ -71,6 +69,7 @@ const Signup = (props) => {
                 name="useremail"
                 value={state.useremail}
                 _onChange={onChange}
+                _onSubmit={onClick}
               />
             </Grid>
           </FlexGrid>
@@ -85,6 +84,7 @@ const Signup = (props) => {
                 name="password"
                 value={state.password}
                 _onChange={onChange}
+                _onSubmit={onClick}
               />
             </Grid>
           </FlexGrid>
@@ -99,6 +99,7 @@ const Signup = (props) => {
                 name="passwordCheck"
                 value={state.passwordCheck}
                 _onChange={onChange}
+                _onSubmit={onClick}
               />
             </Grid>
           </FlexGrid>
@@ -121,13 +122,19 @@ const Signup = (props) => {
                 name="username"
                 value={state.username}
                 _onChange={onChange}
+                _onSubmit={onClick}
               />
             </Grid>
           </FlexGrid>
           <FlexGrid is_flex justify="space-between" margin="20px 0 0 0">
             <FlexGrid width="50%">
               <Button bg="#888">
-                <Text bold align="center" color="#fff">
+                <Text
+                  bold
+                  align="center"
+                  color="#fff"
+                  onClick={() => history.replace("/")}
+                >
                   이전으로
                 </Text>
               </Button>

@@ -3,17 +3,27 @@ import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
 import { cart } from "../image";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useDispatch } from "react-redux";
+import { actionCreators as cartActions } from "../redux/modules/cart";
+
+// @mida_작업__Card UI 및 기능__
 const Card = (props) => {
-  const { src, title, text } = props;
+  const { sumImgUrl, title, text, item } = props;
+  const dispatch = useDispatch();
+
+  const onClick = (e, item) => {
+    e.stopPropagation();
+    dispatch(cartActions.postCart(item));
+  };
+
   return (
-    <CardWrap>
-      <ItemBox>
-        <Image type="default" src={src} />
-        <Cart>
+    <>
+      <ItemWrap>
+        <Image type="default" src={sumImgUrl} />
+        <Cart onClick={(e) => onClick(e, item)}>
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
-          {/* <Image type="default" src={cart} /> */}
         </Cart>
-      </ItemBox>
+      </ItemWrap>
       <FlexGrid margin="15px 0 0 0">
         <Text size="18px" bold>
           {title}
@@ -22,22 +32,16 @@ const Card = (props) => {
           {text}
         </Text>
       </FlexGrid>
-    </CardWrap>
+    </>
   );
 };
 
-const CardWrap = styled.div`
-  width: 32%;
-  margin-top: 30px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const ItemBox = styled.div`
+const ItemWrap = styled.div`
   position: relative;
   padding: 30px;
   background-color: #f9f7f8;
 `;
+
 const Cart = styled.div`
   position: absolute;
   right: 20px;

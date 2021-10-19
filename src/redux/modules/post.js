@@ -4,9 +4,10 @@ import { apis } from '../../lib/axios';
 import { actionCreators as imageActions } from './image';
 import { main_item01 } from "../../image";
 
-
 const SET_MEAT = "SET_MEAT";
 const ADD_MEAT = "ADD_MEAT";
+const DEL_MEAT = "DEL_MEAT";
+const EDIT_MEAT = "EDIT_MEAT";
 const SET_DETAIL = "SET_DETAIL";
 const data = [
   {
@@ -23,6 +24,9 @@ const data = [
 ];
 const setMeat = createAction(SET_MEAT, (meat_list) => ({meat_list}))
 const addMeat = createAction(ADD_MEAT, (meat_info) => ({meat_info}))
+const delMeat = createAction(DEL_MEAT, (meat_id) => ({meat_id}))
+const editMeat = createAction(EDIT_MEAT,(meat_id,meat_info) => ({meat_id,meat_info}))
+
 const setDetail = createAction(SET_DETAIL, (detail_info) => ({detail_info}))
 
 const initialState = {
@@ -67,6 +71,31 @@ const getDetailMiddleware = (item_id) => {
   }
 }
 
+const delMeatMIddleware = (meat_id) => {
+  return(dispatch, getState, {history}) => {
+    apis.delMeat(meat_id).then(()=>{
+      dispatch(delMeat(meat_id));
+      history.replace("/");
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+}
+
+const editMeatMIddleware = (meat_id,meat) => {
+  return(dispatch, getState, {history}) => {
+    apis.editMeat(meat_id,meat).then(()=> {
+      dispatch(editMeat(meat_id,meat));
+      history.replace("/meat");
+    }).catch((err)=> {
+      console.log(err);
+    })
+
+  }
+}
+
+
+
 export default handleActions(
     {
         [SET_MEAT]: (state, action) =>
@@ -78,20 +107,36 @@ export default handleActions(
         produce(state, (draft) => {
           draft.list.unshift(action.payload.meat_info)
         }),
+        [DEL_MEAT]: (state, action) => 
+        produce(state, (draft) => {
+          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
+          if(idx !== -1){
+            draft.list.splice(idx, 1);
+          }
+        }),
+        [EDIT_MEAT]: (state, action) => 
+        produce(state, (draft)=> {
+          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
+          draft.list[idx] = {...draft.list[idx],...action.payload.meat_info}
+        }),
         [SET_DETAIL] : (state, action) =>
         produce(state, (draft) => {
           draft.list=action.payload.detail_info;
-        })
+        }),
     },
     initialState
 );
 
 const actionCreators = {
-  setDetail,
     setMeat,
     getMeatMiddleware,
     addMeat,
     addMeatMiddleware,
+    delMeat,
+    delMeatMIddleware,
+    editMeat,
+    editMeatMIddleware,
+    setDetail,
     getDetailMiddleware,
   };
   

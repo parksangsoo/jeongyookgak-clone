@@ -1,13 +1,6 @@
 {
   "meats": [
     {
-      "id": 0,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "pork",
-      "text": "기준가 16,800원/600g"
-    },
-    {
       "id": 1,
       "src": "main_item01",
       "title": "초신선 돼지 삼겹살 구이용",
@@ -15,95 +8,25 @@
       "text": "기준가 16,800원/600g"
     },
     {
-      "id": 2,
       "src": "main_item01",
       "title": "초신선 돼지 삼겹살 구이용",
+      "category": "beaf",
+      "text": "기준가 16,800원/600g",
+      "id": 4
+    },
+    {
+      "src": "main_item01",
+      "title": "수정입",
+      "category": "ㅁㅁㅁㅁ",
+      "text": "ㅁㅁㅁ",
+      "id": 5
+    },
+    {
+      "src": "main_item01",
+      "title": "ytutuyt",
       "category": "pork",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 3,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "pork",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 4,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "beaf",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 5,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "beaf",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 6,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "beaf",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 7,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "chicken",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 8,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "chicken",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 9,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "chicken",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "id": 10,
-      "src": "main_item01",
-      "title": "초신선 돼지 삼겹살 구이용",
-      "category": "chicken",
-      "text": "기준가 16,800원/600g"
-    },
-    {
-      "src": "main_item01",
-      "title": "소고기 팝니다",
-      "category": "beaf",
-      "text": "기준가 16,800원/100g",
-      "id": 11
-    },
-    {
-      "src": "main_item01",
-      "title": "소고기 팝니다",
-      "category": "beaf",
-      "text": "기준가 16,800원/100g",
-      "id": 12
-    },
-    {
-      "src": "main_item01",
-      "title": "소고기 먹고싶다",
-      "category": "beaf",
-      "text": "1800",
-      "id": 13
-    },
-    {
-      "src": "main_item01",
-      "title": "소고기 또 팝니다.",
-      "category": "beaf",
-      "text": "17000000",
-      "id": 14
+      "text": "asfdsafdsafdasf",
+      "id": 6
     }
   ]
 }
