@@ -11,7 +11,6 @@ const SelectBox = (props) => {
   return (
     <Select>
       {optionData.map((d, idx) => {
-        console.log(idx);
         return(
         <Option value={idx} key={idx}>
           {d.option}

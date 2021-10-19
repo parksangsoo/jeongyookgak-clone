@@ -9,7 +9,7 @@ const Comment = (props) => {
       border="solid 1px #e0e0e0"
     >
       <Text size="20px" bold>
-        {props.name}
+        {props.writer}
       </Text>
       <Grid
         width="920px"
@@ -22,7 +22,13 @@ const Comment = (props) => {
           {props.content}
         </Text>
       </Grid>
-      <Text align="right" size="17px" color="#7a7a7a" margin="10px 0px 0px 0px" bold>
+      <Text
+        align="right"
+        size="17px"
+        color="#7a7a7a"
+        margin="10px 0px 0px 0px"
+        bold
+      >
         {props.createAt}
       </Text>
     </Grid>

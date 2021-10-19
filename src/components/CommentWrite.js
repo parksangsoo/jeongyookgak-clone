@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Button, Input } from "../elements/index";
+import {dispatch} from "../redux/configureStore";
 const CommentWrite = (props) => {
   const [content, setContent] = React.useState("");
   const onChange = (e) => {
     setContent(e.target.value);
   };
+
+  const resist= () => {
+    // dispatch();
+  }
+  
   return (
     <Grid margin="39px auto" width="980px" height="270px">
       <ContentGrid>
@@ -18,7 +24,7 @@ const CommentWrite = (props) => {
         ></Input>
       </ContentGrid>
       <ResistGrid>
-        <ResistButton>등록</ResistButton>
+        <ResistButton onClick={resist}>등록</ResistButton>
       </ResistGrid>
     </Grid>
   );

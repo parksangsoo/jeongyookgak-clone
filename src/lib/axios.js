@@ -20,4 +20,9 @@ export const apis = {
   
   getMeat: () => instance.get('/meats'),
   addMeat: (contents) => instance.post('/meats',contents),
+  //상세페이지
+  getDetail: (item_id) => instance.get(`/item/detail/${item_id}`),
+  //댓글
+  addComment:(item_id, content)=> instance.post(`api/addcomment/${item_id}`,content),
+  getComment:(item_id) => instance.get(`api/comment/${item_id}`),
 };
