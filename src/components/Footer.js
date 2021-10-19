@@ -4,6 +4,8 @@ import { footerLogo } from "../image";
 import { Container, FlexGrid, Text, Image } from "../elements";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import SmsIcon from "@mui/icons-material/Sms";
+
+// @mida_작업__Footer UI__
 const Footer = (props) => {
   return (
     <FooterWrap>

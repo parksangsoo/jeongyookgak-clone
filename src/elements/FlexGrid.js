@@ -12,6 +12,7 @@ const FlexGrid = (props) => {
     border,
     bg,
     alignItems,
+    _onClick,
     children,
   } = props;
   const styles = {
@@ -25,7 +26,11 @@ const FlexGrid = (props) => {
     bg: bg,
     alignItems: alignItems,
   };
-  return <FlexGridWrap {...styles}>{children}</FlexGridWrap>;
+  return (
+    <FlexGridWrap {...styles} onClick={_onClick}>
+      {children}
+    </FlexGridWrap>
+  );
 };
 
 FlexGrid.defaultProps = {
@@ -38,6 +43,7 @@ FlexGrid.defaultProps = {
   border: 0,
   bg: "transparent",
   alignItems: "center",
+  _onClick: () => {},
 };
 
 const FlexGridWrap = styled.div`
@@ -51,6 +57,9 @@ const FlexGridWrap = styled.div`
   flex: ${(props) => (props.flex ? "1" : "")};
   border: ${(props) => (props.border ? props.border : "")};
   background-color: ${(props) => (props.bg ? props.bg : "transparent")};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default FlexGrid;
