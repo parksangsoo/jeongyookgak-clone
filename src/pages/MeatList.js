@@ -70,11 +70,7 @@ const MeatList = () => {
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "pork") {
-                  return (
-                    <FlexGrid width="32%" margin="30px 0 0 0">
-                      <Card key={meat.id} {...meat} />
-                    </FlexGrid>
-                  );
+                  return <Card key={meat.id} {...meat} />;
                 }
                 return null;
               })}
@@ -85,12 +81,8 @@ const MeatList = () => {
           {!pork && beef && !kfc ? (
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
-                if (meat.category === "chicken") {
-                  return (
-                    <FlexGrid width="32%" margin="30px 0 0 0">
-                      <Card key={meat.id} {...meat} />
-                    </FlexGrid>
-                  );
+                if (meat.category === "beaf") {
+                  return <Card key={meat.id} {...meat} />;
                 }
                 return null;
               })}
@@ -101,12 +93,8 @@ const MeatList = () => {
           {!pork && !beef && kfc ? (
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
-                if (meat.category === "beaf") {
-                  return (
-                    <FlexGrid width="32%" margin="30px 0 0 0">
-                      <Card key={meat.id} {...meat} />
-                    </FlexGrid>
-                  );
+                if (meat.category === "chicken") {
+                  return <Card key={meat.id} {...meat} />;
                 }
                 return null;
               })}
