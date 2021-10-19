@@ -4,15 +4,22 @@ import { FlexGrid, Text, Image } from "../elements";
 import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import ClearIcon from "@mui/icons-material/Clear";
+import { actionCreators as cartActions } from "../redux/modules/cart";
+import { useDispatch } from "react-redux";
 
 // @mida_작업__CartItem UI 및 기능__
 const CartItem = (props) => {
-  const { price, sumImgUrl, title, option } = props;
+  const { itemId, price, sumImgUrl, title, option } = props;
+  const dispatch = useDispatch();
 
-  const [state, setState] = React.useState({ price: price, count: 1 });
+  const [state, setState] = React.useState({
+    price: price,
+    count: 1,
+  });
 
   const onIncrease = (price) => {
     setState({ ...state, price: state.price + price, count: state.count + 1 });
+    dispatch(cartActions.increasePrice(price));
   };
 
   const onDecrease = (price) => {
@@ -21,6 +28,11 @@ const CartItem = (props) => {
       price: state.price - price,
       count: state.count - 1,
     });
+    dispatch(cartActions.decreasePrice(price));
+  };
+
+  const onDeleteItem = (itemId, price, count) => {
+    dispatch(cartActions.deleteCart(itemId, price, count));
   };
 
   return (
@@ -51,10 +63,13 @@ const CartItem = (props) => {
           </FlexGrid>
         </TableGrid>
         <TableGrid width="120px">
-          <Text size="17px">{state.price > 10000 ? state.price : 10000}원</Text>
+          <Text size="17px">{state.price > 10000 ? state.price : price}원</Text>
         </TableGrid>
         <TableGrid width="70px">
-          <Button border="1px solid #eee">
+          <Button
+            onClick={() => onDeleteItem(itemId, price, state.count)}
+            border="1px solid #eee"
+          >
             <ClearIcon style={{ fontSize: "18px", verticalAlign: "bottom" }} />
           </Button>
         </TableGrid>

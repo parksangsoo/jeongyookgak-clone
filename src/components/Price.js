@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Text, Button } from "../elements";
+import { useSelector } from "react-redux";
+
 // @mida_작업__CartItem UI 및 기능__
 const Price = (props) => {
+  const total_price = useSelector((state) => state.cart.total_price);
+
   return (
     <>
       <BorderGrid padding="27px">
         <FlexGrid is_flex justify="space-between">
           <Text size="14px">총 상품 금액</Text>
-          <Text size="14px">10,000원</Text>
+          <Text size="14px">{total_price}원</Text>
         </FlexGrid>
         <BorderGrid
           margin="15px 0 0 0"
@@ -50,7 +54,7 @@ const Price = (props) => {
             예상 결제 금액
           </Text>
           <Text size="24px" bold align="right" color="#d0021b">
-            10,000원
+            {total_price}원
           </Text>
         </FlexGrid>
         <Button bg="#d0021b" margin="15px 0 0 0" padding="15px">
