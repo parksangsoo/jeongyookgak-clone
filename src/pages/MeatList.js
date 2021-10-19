@@ -1,63 +1,45 @@
-import React,{useState} from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import { Container, FlexGrid } from '../elements/index';
 import Card from '../components/Card';
 import banner_pork from "../image/pcpork.png";
-import {
-    main_top,
-    main_img01,
-    main_img02,
-    main_item01,
-    main_item02,
-    main_item03,
-    main_item04,
-    main_item05,
-    main_item06,
-  } from "../image";
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as meatCreators } from '../redux/modules/post';
 
 const MeatList = () => {
 
-    const datas = [
-        {
-          id: 1,
-          src: main_item01,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-        {
-          id: 2,
-          src: main_item02,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-        {
-          id: 3,
-          src: main_item03,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-        {
-          id: 4,
-          src: main_item04,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-        {
-          id: 5,
-          src: main_item05,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-        {
-          id: 6,
-          src: main_item06,
-          title: "초신선 돼지 삼겹살 구이용",
-          text: "기준가 16,800원/600g",
-        },
-      ];
+    const dispatch = useDispatch();
+    const meats = useSelector((state) => state.post.list);
+
+    const [pork, setPork] = React.useState(true);
+    const [beef, setBeef] = React.useState(false);
+    const [kfc, setKfc] = React.useState(false);
+
+  useEffect(() => {
+    
+    dispatch(meatCreators.getMeatMiddleware());
+    
+},[])
 
 
+  const changePork = () => {
+    setPork(true);
+    setBeef(false);
+    setKfc(false);
+  };
 
+  const changeBeef = () => {
+    setBeef(true);
+    setPork(false);
+    setKfc(false);
+  };
+
+  const changeKfc = () => {
+    setKfc(true);
+    setPork(false);
+    setBeef(false);
+  };
+    
     return (
         <>
             <FlexGrid>
@@ -66,19 +48,50 @@ const MeatList = () => {
                 </FlexGrid>
                 <Container margin="50px auto">
                 <FlexGrid is_flex>
-                    <MeatBtn>돼지</MeatBtn>
-                    <MeatBtn>소</MeatBtn>
-                    <MeatBtn>닭</MeatBtn>
-                    <MeatBtn>수산</MeatBtn>
-                    <MeatBtn>밀키트</MeatBtn>
-                    <MeatBtn>우유</MeatBtn>
-                    <MeatBtn>달걀</MeatBtn>
+                    <MeatBtn 
+                        bg={pork ? "#212121" : "#eee"}
+                        color={pork ? "white" : "#212121"}
+                        onClick={changePork}>돼지</MeatBtn>
+                    <MeatBtn 
+                        bg={beef ? "#212121" : "#eee"}
+                        color={beef ? "white" : "#212121"}
+                        onClick={changeBeef}>소</MeatBtn>
+                    <MeatBtn 
+                        bg={kfc ? "#212121" : "#eee"}
+                        color={kfc ? "white" : "#212121"}
+                        onClick={changeKfc}>닭</MeatBtn>
                 </FlexGrid>
-                <FlexGrid is_flex justify="space-between">
-                    {datas.map((data)=>{
-                        return <Card key={data.id} {...data}/>
-                    })}
-                </FlexGrid>
+                {pork && !beef && !kfc?(
+                    <FlexGrid is_flex justify="space-between">
+                        {meats.map((meat)=>{
+                            if(meat.category === "pork"){
+                                return <Card key={meat.id} {...meat}/>
+                            }
+                            return null;
+                        })}
+                    </FlexGrid>
+                ):("")}
+                {!pork && beef && !kfc?(
+                    <FlexGrid is_flex justify="space-between">
+                        {meats.map((meat)=>{
+                            if(meat.category === "chicken"){
+                                return <Card key={meat.id} {...meat}/>
+                            }
+                            return null;
+                        })}
+                    </FlexGrid>
+                ):("")}
+                {!pork && !beef && kfc?(
+                    <FlexGrid is_flex justify="space-between">
+                        {meats.map((meat)=>{
+                            if(meat.category === "beaf"){
+                                return <Card key={meat.id} {...meat}/>
+                            }
+                            return null;
+                        })}
+                    </FlexGrid>
+                ):("")}
+
                 </Container>
             </FlexGrid>
         </>
@@ -91,7 +104,8 @@ const MeatBtn = styled.button`
   height: 3rem;
   border: none;
   border-radius: 0.2rem;
-  color: #212121;
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.bg};
   font-size: 1rem;
   font-weight: 700;
   margin: 0rem 0rem 5rem 0.5rem;
