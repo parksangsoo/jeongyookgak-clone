@@ -21,23 +21,11 @@ import { off } from "process";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
-  const item = useSelector(state=>state.post.list[0]);
+  const _item = useSelector(state=>state.post.list);
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
   const _id = props.match.params.id;
-  const data = [
-    {
-      id: 0,
-      src: main_item01,
-      title: "초신선 돼지 삼겹살 구이용",
-      text: "기준가 16,800원/600g",
-      category: 1,
-      defaultprice: "기준가 19,800원(600g)",
-      detailprice: "100g당 3,300원",
-      sumImgUrl: "1111",
-      detailImgUrl: main_item01,
-    },
-  ];
+  const item = _item[0]
   const menuSelect = (v) => {
     setMenu(v);
   };
@@ -67,7 +55,7 @@ const Detail = (props) => {
             margin="auto"
           >
             <Grid width="500px" height="500px" margin="0px, 70px, 0px, 30px">
-              <Image src={item.detailImgUrl}></Image>
+              <Image src={item.sumImgUrl}></Image>
             </Grid>
             <Grid width="380px" height="500px" margin="0px">
               <h2
@@ -148,6 +136,37 @@ const Detail = (props) => {
                   장바구니
                 </Button>
               </Grid>
+              <Grid
+                margin="40px auto"
+                height="60px"
+                is_flex
+                align_items="start"
+              >
+                <Button
+                  bg="#888"
+                  width="180px"
+                  height="60px"
+                  size="16px"
+                  bold
+                  _onClick={() => {
+                    console.log(item)
+                  }}
+                >
+                  상품삭제
+                </Button>
+                <Button
+                  bg="#d0021b"
+                  width="180px"
+                  height="60px"
+                  size="16px"
+                  bold
+                  _onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  상품수정
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
@@ -191,12 +210,12 @@ const Detail = (props) => {
       <Container>
         {menu ? (
           <>
-            <CommentWrite />
-            <CommentList />
+            <CommentWrite item_id={_id}/>
+            <CommentList item_id={_id}/>
           </>
         ) : (
-          null
-          // <ItemDesc src={item.detailImgUrl}/>
+          
+          <ItemDesc src={item.detailImgUrl}/>
         )}
       </Container>
     </React.Fragment>

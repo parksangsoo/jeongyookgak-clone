@@ -6,31 +6,15 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentList = (props) => {
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.list);
-  console.log(comment);
-  const data = [
-    {
-      comment_id: 0,
-      writer: "작성자1",
-      content: "내용1",
-      createAt: "2021-01-01",
-    },
-    {
-      comment_id: 1,
-      writer: "작성자2",
-      content: "내용2",
-      createAt: "2021-01-02",
-    },
-  ];
-
+  comment&&console.log(comment);
   React.useEffect(() => {
-    dispatch(commentActions.getComment(data));
+    dispatch(commentActions.getCommentMiddleware(props.item_id));
   }, []);
-
   if (comment) {
     return (
       <Grid margin="39px auto" width="980px">
-        {comment.map((d, idx) => {
-          return <Comment {...d} key={d.comment_id} />;
+        {comment.map((d) => {
+          return <Comment {...d} key={d.id} />;
         })}
       </Grid>
     );

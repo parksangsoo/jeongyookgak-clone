@@ -9,17 +9,11 @@ const CommentWrite = (props) => {
   const onChange = (e) => {
     setContent(e.target.value);
   };
-  const date = new Date();
   const resist = () => {
     // dispatch();
     if (content) {
       dispatch(
-        commentActions.addComment({
-          content: content,
-          id: date,
-          writer: "만준",
-          creatAt: date,
-        })
+        commentActions.addCommentMiddleware(props.item_id, {content})
       );
       setContent("");
     } else {

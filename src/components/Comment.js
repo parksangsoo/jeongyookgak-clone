@@ -8,7 +8,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Comment = (props) => {
   const [edit_open, setEditOpen] = useState(false);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(props.content);
   const dispatch = useDispatch();
   const onChange =(e) => {
     setContent(e.target.value);
@@ -22,12 +22,12 @@ const Comment = (props) => {
   };
   const editComment=() => {
     console.log("aaa");
-    dispatch(commentActions.editComment(props.comment_id, {content}));
+    dispatch(commentActions.editCommentMiddleware(props.id, content));
     setEditOpen(false);
     setContent("");
   }
   const delComment = () => {
-    dispatch(commentActions.deleteComment(props.comment_id));
+    dispatch(commentActions.deleteCommentMiddleware(props.id));
   };
   return (
     <Grid
