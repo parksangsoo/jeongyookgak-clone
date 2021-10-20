@@ -8,15 +8,17 @@ import Image from "./modules/image";
 import Comment from "./modules/comment";
 import Main from "./modules/main";
 import Cart from "./modules/cart";
+import User from "./modules/user";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   post: Post,
   image: Image,
-  comment : Comment,
+  comment: Comment,
   main: Main,
   cart: Cart,
+  user: User,
   router: connectRouter(history),
 });
 
