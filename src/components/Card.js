@@ -9,15 +9,23 @@ import { actionCreators as cartActions } from "../redux/modules/cart";
 const Card = (props) => {
   const { sumImgUrl, title, defaultprice, item } = props;
   const dispatch = useDispatch();
+  const badge_text = title.indexOf("무항생제") !== -1 ? true : false;
 
   const onClick = (e, item) => {
     e.stopPropagation();
-    dispatch(cartActions.postCart(item));
+    const newItem = {
+      itemId: item.itemId,
+      amount: 1,
+      option: "옵션 text",
+      defaultprice,
+    };
+    dispatch(cartActions.postCartFB(newItem));
   };
 
   return (
     <>
       <ItemWrap>
+        {badge_text && <Badge>무항생제</Badge>}
         <Image type="default" src={sumImgUrl} />
         <Cart onClick={(e) => onClick(e, item)}>
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
@@ -58,5 +66,18 @@ const Cart = styled.div`
       color: #fff;
     }
   }
+`;
+
+const Badge = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #60bed1;
+  background-color: #fff;
+  border: 3px solid #68d1e6;
+  border-radius: 20px;
 `;
 export default Card;

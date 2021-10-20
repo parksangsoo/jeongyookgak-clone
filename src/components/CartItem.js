@@ -5,44 +5,47 @@ import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import ClearIcon from "@mui/icons-material/Clear";
 import { actionCreators as cartActions } from "../redux/modules/cart";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // @mida_작업__CartItem UI 및 기능__
 const CartItem = (props) => {
-  const { itemId, price, sumImgUrl, title, option } = props;
+  const { basketId, defaultprice, sumImgUrl, title, option, amount } = props;
   const dispatch = useDispatch();
-  const item_count = useSelector((state) => state.cart.item_count);
-  const item_id = useSelector((state) => state.cart.item_id);
 
   const [state, setState] = React.useState({
-    price: price,
-    count: 1,
-    itemId,
+    price: defaultprice,
+    count: amount,
+    basketId,
   });
 
   const onIncrease = (price) => {
-    setState({ ...state, price: state.price + price, count: state.count + 1 });
-    dispatch(cartActions.increasePrice(itemId, price, state.count));
+    setState({
+      ...state,
+      price: state.price + defaultprice,
+      count: state.count + 1,
+    });
+
+    dispatch(cartActions.increasePriceFB(true, price, basketId));
   };
 
   const onDecrease = (price) => {
     setState({
       ...state,
-      price: state.price - price,
+      price: state.price - defaultprice,
       count: state.count - 1,
     });
-    dispatch(cartActions.decreasePrice(itemId, price, state.count));
+    dispatch(cartActions.decreasePriceFB(false, price, basketId));
   };
 
-  const onDeleteItem = (itemId, price, count) => {
-    dispatch(cartActions.deleteCart(itemId, price, count));
+  const onDeleteItem = (basketId, price, count) => {
+    dispatch(cartActions.deleteCartFB(basketId, price, count));
   };
 
   React.useEffect(() => {
     return () => {
       console.log("뒷정리함수");
     };
-  }, []);
+  }, [amount]);
 
   return (
     <>
@@ -58,7 +61,7 @@ const CartItem = (props) => {
         </TableGrid>
         <TableGrid width="150px">
           <FlexGrid is_flex border="1px solid #dcdcdc">
-            <Button onClick={() => onDecrease(price)}>
+            <Button onClick={() => onDecrease(defaultprice)}>
               <HorizontalRuleIcon
                 style={{ fontSize: "18px", verticalAlign: "bottom" }}
               />
@@ -66,17 +69,19 @@ const CartItem = (props) => {
             <Text flex align="center" size="18px">
               {state.count > 1 ? state.count : 1}
             </Text>
-            <Button onClick={() => onIncrease(price)}>
+            <Button onClick={() => onIncrease(defaultprice)}>
               <AddIcon style={{ fontSize: "18px", verticalAlign: "bottom" }} />
             </Button>
           </FlexGrid>
         </TableGrid>
         <TableGrid width="120px">
-          <Text size="17px">{state.price > 10000 ? state.price : price}원</Text>
+          <Text size="17px">
+            {state.price > 10000 ? state.price : defaultprice}원
+          </Text>
         </TableGrid>
         <TableGrid width="70px">
           <Button
-            onClick={() => onDeleteItem(itemId, price, state.count)}
+            onClick={() => onDeleteItem(basketId, defaultprice, state.count)}
             border="1px solid #eee"
           >
             <ClearIcon style={{ fontSize: "18px", verticalAlign: "bottom" }} />
