@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Container, FlexGrid } from "../elements/index";
+import { Container, FlexGrid, Button } from "../elements/index";
 import Card from "../components/Card";
 import banner_pork from "../image/pcpork.png";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as meatCreators } from "../redux/modules/post";
 
-const MeatList = () => {
+const MeatList = (props) => {
   const dispatch = useDispatch();
   const meats = useSelector((state) => state.post.list);
-
+  const { history } = props;
   const [pork, setPork] = React.useState(true);
   const [beef, setBeef] = React.useState(false);
   const [kfc, setKfc] = React.useState(false);
 
   useEffect(() => {
     dispatch(meatCreators.getMeatMiddleware());
+    console.log(meats)
   }, []);
 
   const changePork = () => {
@@ -104,6 +105,14 @@ const MeatList = () => {
           )}
         </Container>
       </FlexGrid>
+      <Button
+          is_float
+          _onClick={() => {
+            history.push("/meatwrite");
+          }}
+        >
+          +
+        </Button>
     </>
   );
 };

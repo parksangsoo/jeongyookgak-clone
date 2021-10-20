@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "http://localhost:4000/",
+  baseURL: "http://52.79.248.107/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
@@ -19,7 +19,7 @@ instance.interceptors.request.use(function (config) {
 export const apis = {
 
   // 게시물 불러오기
-  getMeat: () => instance.get("/meats"),
+  getMeat: () => instance.get(`/`),
   addMeat: (contents) => instance.post("/meats", contents),
   delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`),
   editMeat: (meat_id, contents) => instance.put(`/meats/${meat_id}`, contents),
