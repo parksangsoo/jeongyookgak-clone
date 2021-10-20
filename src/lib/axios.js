@@ -19,9 +19,9 @@ const instance = axios.create({
 export const apis = {
   // 게시물 불러오기
   getMeat: () => instance.get("/item/all"),
-  addMeat: (contents) => instance.post("/meats", contents),
-  delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`),
-  editMeat: (meat_id, contents) => instance.put(`/meats/${meat_id}`, contents),
+  addMeat: (contents) => instance.post("/item", contents),
+  delMeat: (item_id) => instance.delete(`/item/delete/${item_id}`),
+  editMeat: (item_id, contents) => instance.put(`/item/update/${item_id}`, contents),
   //이미지 업로드
   addImage: (imagedata) => instance.post("/image",imagedata),
   //상세페이지

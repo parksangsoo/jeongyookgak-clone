@@ -9,6 +9,7 @@ import { actionCreators as meatCreators } from "../redux/modules/post";
 const MeatList = (props) => {
   const dispatch = useDispatch();
   const meats = useSelector((state) => state.post.list);
+  const is_login = useSelector((state) => state.user.is_login);
   const { history } = props;
   const [pork, setPork] = React.useState(true);
   const [beef, setBeef] = React.useState(false);
@@ -111,14 +112,15 @@ const MeatList = (props) => {
           )}
         </Container>
       </FlexGrid>
-      <Button
+      {is_login?(<Button
           is_float
           _onClick={() => {
             history.push("/meatwrite");
           }}
         >
           +
-        </Button>
+        </Button>):''}
+      
     </>
   );
 };

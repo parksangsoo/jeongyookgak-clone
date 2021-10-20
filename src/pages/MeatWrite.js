@@ -17,14 +17,23 @@ const MeatWrite = (props) => {
     const [price,setPrice] = useState(_meat ? _meat.text : "");
     const { history } = props;
 
-    
+    const meattypes = [
+        { meat: 'pork',
+          name:'돼지고기'},
+        { meat: 'beaf',
+        name:'소고기'},
+        { meat: 'chicken',
+        name:'닭고기'}
+    ]
 
     const changeTitle = (e) => {
         setTitle(e.target.value)
     }
 
     const changeCategory = (e) => {
+        console.log(category)
         setCategory(e.target.value)
+        
     }
 
     const changePrice = (e) => {
@@ -104,8 +113,13 @@ const MeatWrite = (props) => {
                         <Upload />
                     </FlexGrid>
                     <FlexGrid margin="0px auto 20px auto">
-                        <Text>카테고리</Text>
-                        <Input value={category} width="50%" _onChange={changeCategory}/>
+                        <Text>고기 분류</Text>
+                        {meattypes.map((meattype) => (
+                            <FlexGrid>
+                                <label>{meattype.name}</label>
+                                <input type="radio" name="color-selector" value={meattype.meat} onChange={changeCategory}/>
+                            </FlexGrid>
+                        ))}
                     </FlexGrid>
                     <FlexGrid  margin="0px auto 20px auto">
                         <Text>가격</Text>
