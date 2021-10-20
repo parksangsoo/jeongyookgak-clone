@@ -93,17 +93,52 @@ const delMeatMIddleware = (meat_id) => {
 
 const editMeatMIddleware = (meat_id,meat) => {
   return(dispatch, getState, {history}) => {
-    apis.editMeat(meat_id,meat).then(()=> {
-      dispatch(editMeat(meat_id,meat));
-      history.replace("/meat");
-    }).catch((err)=> {
-      console.log(err);
-    })
+
+    if(!meat_id){
+      console.log("고기 정보가 없어요!");
+      return
+    }
+  
+    const _image = getState().image.preview;
+    const _meat_idx = getState().post.list.findIndex((p) => p.itemId.toString() === meat_id);
+    const _meat = getState().post.list[_meat_idx];
+    if(_image === _meat.sumImgUrl){
+
+      meat.sumImgUrl = _image
+      console.log(meat)
+      apis.editMeat(meat_id,meat).then(()=> {
+        dispatch(editMeat(meat_id,meat));
+        history.replace("/meat");
+        dispatch(imageActions.setPreview(null));
+      }).catch((err)=> {
+        console.log(err);
+        console.log("??????");
+      })
+    }else{
+      const _file = getState().image.file;
+      let formData = new FormData()
+      formData.append("image", _file)
+      apis.addImage(formData).then((res) => {
+        console.log(res.data)
+        meat.sumImgUrl = res.data
+        console.log(meat)
+        apis.editMeat(meat_id,meat).then(()=> {
+          dispatch(editMeat(meat_id,meat));
+          history.replace("/meat");
+          dispatch(imageActions.setPreview(null));
+        }).catch((err)=> {
+          console.log(err);
+        })
+      }).catch((err)=>{
+        console.log(err)
+        console.log("이미지 업로드가 안됨")
+      })
+
+    }
+    
 
   }
 }
-
-
 
 export default handleActions(
     {
@@ -118,14 +153,14 @@ export default handleActions(
         }),
         [DEL_MEAT]: (state, action) => 
         produce(state, (draft) => {
-          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
+          let idx = draft.list.findIndex((p) => p.itemId.toString() === action.payload.meat_id);
           if(idx !== -1){
             draft.list.splice(idx, 1);
           }
         }),
         [EDIT_MEAT]: (state, action) => 
         produce(state, (draft)=> {
-          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
+          let idx = draft.list.findIndex((p) => p.itemId.toString() === action.payload.meat_id);
           draft.list[idx] = {...draft.list[idx],...action.payload.meat_info}
         }),
     },
