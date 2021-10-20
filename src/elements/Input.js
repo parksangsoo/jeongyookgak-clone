@@ -13,7 +13,22 @@ const Input = (props) => {
     is_submit,
     onSubmit,
     width,
+    multiLine,
   } = props;
+
+  if (multiLine) {
+    return (
+      <Grid>
+        {label && <Text margin="0px">{label}</Text>}
+        <ElTextarea
+          rows={10}
+          value={value}
+          placeholder={placeholder}
+          onChange={_onChange}
+        ></ElTextarea>
+      </Grid>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -62,5 +77,10 @@ const ElInput = styled.input`
   padding: 12px 4px;
   box-sizing: border-box;
 `;
-
+const ElTextarea = styled.textarea`
+  border: 1px solid #212121;
+  width: 100%;
+  padding: 12px 4px;
+  box-sizing: border-box;
+`;
 export default Input;

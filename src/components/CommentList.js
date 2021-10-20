@@ -9,13 +9,13 @@ const CommentList = (props) => {
   console.log(comment);
   const data = [
     {
-      id: 1,
+      comment_id: 0,
       writer: "작성자1",
       content: "내용1",
       createAt: "2021-01-01",
     },
     {
-      id: 2,
+      comment_id: 1,
       writer: "작성자2",
       content: "내용2",
       createAt: "2021-01-02",
