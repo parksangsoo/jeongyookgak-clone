@@ -51,9 +51,9 @@ const addMeatMiddleware = (meat) => {
       let formData = new FormData()
       formData.append("image", _file)
       apis.addImage(formData).then((res) => {
-
-        meat.sumImgUrl = res.data.sumImgUrl
-        console.log(meat)
+        
+        meat.sumImgUrl = res.data
+        
         apis.addMeat(meat)
         .then(()=>{
           dispatch(addMeat(meat))
