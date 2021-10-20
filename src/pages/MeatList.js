@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Container, FlexGrid, Button } from "../elements/index";
 import Card from "../components/Card";
@@ -15,11 +15,7 @@ const MeatList = (props) => {
   const [beef, setBeef] = React.useState(false);
   const [kfc, setKfc] = React.useState(false);
 
-  useEffect(() => {
-    dispatch(meatCreators.getMeatMiddleware());
-    console.log(meats)
-  }, []);
-
+  
   const changePork = () => {
     setPork(true);
     setBeef(false);
@@ -37,6 +33,13 @@ const MeatList = (props) => {
     setPork(false);
     setBeef(false);
   };
+
+  React.useEffect(() => {
+    if(meats.length < 2){
+      dispatch(meatCreators.getMeatMiddleware());
+    }
+  }, []);
+
 
   return (
     <>
@@ -72,8 +75,10 @@ const MeatList = (props) => {
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "pork") {
-                  return (<FlexGrid>
-                          <Card key={meat.item_id} {...meat} />
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                          <Card {...meat} />
                         </FlexGrid>)
                 }
                 return null;
@@ -86,8 +91,10 @@ const MeatList = (props) => {
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "beaf") {
-                  return (<FlexGrid>
-                    <Card key={meat.item_id} {...meat} />
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                    <Card {...meat} />
                   </FlexGrid>)
                 }
                 return null;
@@ -100,8 +107,10 @@ const MeatList = (props) => {
             <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "chicken") {
-                  return (<FlexGrid>
-                    <Card key={meat.item_id} {...meat} />
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                    <Card {...meat} />
                   </FlexGrid>)
                 }
                 return null;
