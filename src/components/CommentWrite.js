@@ -71,6 +71,9 @@ const ResistButton = styled.button`
   border: none;
   margin: 0px;
   float: right;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 export default CommentWrite;

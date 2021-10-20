@@ -5,8 +5,8 @@ const instance = axios.create({
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
-    "X-Auth-Token": `${localStorage.getItem("token")}`,
-    // authorization: `Bearer ${localStorage.getItem("token")}`,
+    "X-Auth-Token": `${sessionStorage.getItem("token")}`,
+    // authorization: `Bearer ${sessionStorage.getItem("token")}`,
   },
 });
 
@@ -27,9 +27,10 @@ export const apis = {
   //상세페이지
   getDetail: (item_id) => instance.get(`/item/detail/${item_id}`),
   //댓글
-  addComment: (item_id, content) =>
-    instance.post(`api/addcomment/${item_id}`, content),
-  getComment: (item_id) => instance.get(`api/comment/${item_id}`),
+  addComment:(item_id, content)=> instance.post(`api/addcomment/${item_id}`,content),
+  getComment:(item_id) => instance.get(`api/comment/${item_id}`),
+  deleteComment: (comment_id) => instance.get(`api/deletecomment/${comment_id}`),
+  editComment : (comment_id, content)=> instance.put(`api/updatecomment/${comment_id}`,content),
 };
 
 // @mida_작업__axios api__

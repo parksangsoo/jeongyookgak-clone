@@ -4,11 +4,23 @@ import styled from "styled-components";
 import { LogoImage } from "../image";
 import { Container, FlexGrid, Link } from "../elements";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // @mida_작업__Header UI 및 기능__
 const Header = () => {
+  const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
   const cart_count = useSelector((state) => state.cart.cart_count);
+
+  const onLogOut = () => {
+    dispatch(userActions.logOutFB());
+  };
+
+  React.useEffect(() => {
+    dispatch(userActions.loginCheck());
+  }, []);
+
   return (
     <>
       <HeaderBg>
@@ -29,8 +41,17 @@ const Header = () => {
                 <Link>공지사항</Link>
                 <Link>고객센터</Link>
                 <Link line>|</Link>
-                <Link _onClick={() => history.push("/login")}>로그인</Link>
-                <Link _onClick={() => history.push("/signup")}>회원가입</Link>
+                {!is_login ? (
+                  <>
+                    <Link _onClick={() => history.push("/login")}>로그인</Link>
+                    <Link _onClick={() => history.push("/signup")}>
+                      회원가입
+                    </Link>
+                  </>
+                ) : (
+                  <Link _onClick={onLogOut}>로그아웃</Link>
+                )}
+
                 <Link fontSize="17px" _onClick={() => history.push("/cart")}>
                   <CartWrap>
                     <ShoppingCartIcon

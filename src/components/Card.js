@@ -28,7 +28,7 @@ const Card = (props) => {
           {title}
         </Text>
         <Text size="16px" color="#9b9b9b" margin="6px 0 0 0">
-          {defaultprice}
+          기준가 {defaultprice}원
         </Text>
       </FlexGrid>
     </>

@@ -14,6 +14,7 @@ const Input = (props) => {
     onSubmit,
     width,
     multiLine,
+    _rows,
   } = props;
 
   if (multiLine) {
@@ -21,7 +22,7 @@ const Input = (props) => {
       <Grid>
         {label && <Text margin="0px">{label}</Text>}
         <ElTextarea
-          rows={10}
+          rows={_rows?_rows:10}
           value={value}
           placeholder={placeholder}
           onChange={_onChange}
