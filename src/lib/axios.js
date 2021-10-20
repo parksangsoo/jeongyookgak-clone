@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // 기본적으로 우리가 바라볼 서버의 주소
   baseURL: "http://52.79.248.107:8080/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -19,10 +18,12 @@ const instance = axios.create({
 
 export const apis = {
   // 게시물 불러오기
-  getMeat: () => instance.get("/meats"),
-  addMeat: (contents) => instance.post("/meats", contents),
-  delMeat: (meat_id) => instance.delete(`/meats/${meat_id}`),
-  editMeat: (meat_id, contents) => instance.put(`/meats/${meat_id}`, contents),
+  getMeat: () => instance.get("/item/all"),
+  addMeat: (contents) => instance.post("/item", contents),
+  delMeat: (item_id) => instance.delete(`/item/delete/${item_id}`),
+  editMeat: (item_id, contents) => instance.put(`/item/update/${item_id}`, contents),
+  //이미지 업로드
+  addImage: (imagedata) => instance.post("/image",imagedata),
   //상세페이지
   getDetail: (item_id) => instance.get(`/item/detail/${item_id}`),
   //댓글
