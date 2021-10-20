@@ -7,7 +7,7 @@ import { actionCreators as cartActions } from "../redux/modules/cart";
 
 // @mida_작업__Card UI 및 기능__
 const Card = (props) => {
-  const { sumImgUrl, title, text, item } = props;
+  const { sumImgUrl, title, defaultprice, item } = props;
   const dispatch = useDispatch();
 
   const onClick = (e, item) => {
@@ -28,7 +28,7 @@ const Card = (props) => {
           {title}
         </Text>
         <Text size="16px" color="#9b9b9b" margin="6px 0 0 0">
-          {text}
+          기준가 {defaultprice}원
         </Text>
       </FlexGrid>
     </>

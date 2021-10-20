@@ -3,29 +3,28 @@ import styled from "styled-components";
 import { Text, FlexGrid } from "../elements";
 import { kakao, naver } from "../image";
 import { checkValue } from "../shared/regExp";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // @mida_작업__Login UI 및 기능__
 const Login = (props) => {
-  const [state, setState] = React.useState({ useremail: "", password: "" });
+  const dispatch = useDispatch();
+  const [state, setState] = React.useState({ username: "", password: "" });
 
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const onClick = () => {
-    if (!checkValue(state.useremail)) {
-      alert("아이디는 영문 숫자 조합 6자리 이상으로 입력해주세요");
-      return;
-    }
     if (!checkValue(state.password)) {
       alert("비밀번호는 영문 숫자 조합 6자리 이상으로 입력해주세요");
       return;
     }
-    if (state.useremail === "" || state.password === "") {
+    if (state.username === "" || state.password === "") {
       alert("내용을 모두 입력해주세요");
       return;
     }
-    console.log("login 성공");
+    dispatch(userActions.loginFB(state));
   };
   return (
     <>
@@ -40,8 +39,8 @@ const Login = (props) => {
           <FlexGrid margin="8px 0 0 0">
             <Input
               width="100%"
-              name="useremail"
-              value={state.useremail}
+              name="username"
+              value={state.username}
               onChange={onChange}
               placeholder="아이디(이메일 주소)를 입력하세요."
             />
@@ -50,6 +49,7 @@ const Login = (props) => {
             <Input
               width="100%"
               name="password"
+              type="password"
               value={state.password}
               onChange={onChange}
               placeholder="비밀번호를 입력하세요."
