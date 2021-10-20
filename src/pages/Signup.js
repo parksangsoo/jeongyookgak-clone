@@ -4,11 +4,13 @@ import { history } from "../redux/configureStore";
 import { Container, Text, FlexGrid, DefaultInput, Button } from "../elements";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { checkValue } from "../shared/regExp";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // @mida_작업__Signup UI 및 기능__
 const Signup = (props) => {
+  const dispatch = useDispatch();
   const [state, setState] = React.useState({
-    useremail: "",
     username: "",
     password: "",
     passwordCheck: "",
@@ -16,11 +18,10 @@ const Signup = (props) => {
 
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
-    console.log("state = ", state);
   };
 
   const onClick = () => {
-    if (!checkValue(state.useremail)) {
+    if (!checkValue(state.username)) {
       alert("아이디는 영문 숫자 조합 6자리 이상으로 입력해주세요");
       return;
     }
@@ -33,15 +34,14 @@ const Signup = (props) => {
       return;
     }
     if (
-      state.useremail === "" ||
+      state.username === "" ||
       state.password === "" ||
-      state.passwordCheck === "" ||
-      state.username === ""
+      state.passwordCheck === ""
     ) {
       alert("내용을 모두 입력해주세요");
       return;
     }
-    console.log("회원가입완료");
+    dispatch(userActions.signupFB(state));
   };
   return (
     <>
@@ -66,8 +66,8 @@ const Signup = (props) => {
             <Grid padding="14px" flex>
               <DefaultInput
                 width="100%"
-                name="useremail"
-                value={state.useremail}
+                name="username"
+                value={state.username}
                 _onChange={onChange}
                 _onSubmit={onClick}
               />
@@ -89,28 +89,13 @@ const Signup = (props) => {
             </Grid>
           </FlexGrid>
           <FlexGrid is_flex>
-            <Grid padding="20px" bg width="200px">
-              <Label>비밀번호 확인</Label>
-            </Grid>
-            <Grid padding="14px" flex>
-              <DefaultInput
-                type="password"
-                width="100%"
-                name="passwordCheck"
-                value={state.passwordCheck}
-                _onChange={onChange}
-                _onSubmit={onClick}
-              />
-            </Grid>
-          </FlexGrid>
-          <FlexGrid is_flex>
             <Grid
               padding="20px"
               bg
               width="200px"
               style={{ borderBottom: "1px solid #e1dedf" }}
             >
-              <Label>이름</Label>
+              <Label>비밀번호 확인</Label>
             </Grid>
             <Grid
               padding="14px"
@@ -118,9 +103,10 @@ const Signup = (props) => {
               style={{ borderBottom: "1px solid #e1dedf" }}
             >
               <DefaultInput
+                type="password"
                 width="100%"
-                name="username"
-                value={state.username}
+                name="passwordCheck"
+                value={state.passwordCheck}
                 _onChange={onChange}
                 _onSubmit={onClick}
               />
