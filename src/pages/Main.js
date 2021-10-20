@@ -2,17 +2,23 @@ import React from "react";
 import Card from "../components/Card";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, FlexGrid, Image, Text } from "../elements";
 import { main_top, main_img01, main_img02 } from "../image";
+import { actionCreators as mainActions } from "../redux/modules/main";
 
 // @mida_작업__Main UI 및 기능__
 const Main = () => {
   const data = useSelector((state) => state.main.best_list);
+  const dispatch = useDispatch();
 
   const onClick = (id) => {
     history.push(`/detail/${id}`);
   };
+
+  React.useEffect(() => {
+    dispatch(mainActions.getBestListFB());
+  }, []);
 
   return (
     <>
