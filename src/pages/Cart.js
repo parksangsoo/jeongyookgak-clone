@@ -4,11 +4,16 @@ import { Container, FlexGrid, Text } from "../elements";
 import CartItem from "../components/CartItem";
 import Price from "../components/Price";
 import NoItem from "../components/NoItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as cartActions } from "../redux/modules/cart";
 
 // @mida_작업__Cart UI 및 기능__
 const Cart = (props) => {
+  const dispatch = useDispatch();
   const cart_list = useSelector((state) => state.cart.cart_list);
+  React.useEffect(() => {
+    dispatch(cartActions.getCartListFB());
+  }, []);
   return (
     <>
       <Container padding="140px 0 0 0">
