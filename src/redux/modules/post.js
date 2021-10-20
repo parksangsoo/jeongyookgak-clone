@@ -49,13 +49,24 @@ const getMeatMiddleware = () => {
 
 const addMeatMiddleware = (meat) => {
     return (dispatch, getState, {history}) => {
-      apis.addMeat(meat)
-      .then(()=>{
-        dispatch(addMeat(meat))
-        history.push('/meat');
-        dispatch(imageActions.setPreview(null));
-      }).catch((err) => {
+      const _file = getState().image.file;
+      let formData = new FormData()
+      formData.append("image", _file)
+      apis.addImage(formData).then((res) => {
+
+        meat.sumImgUrl = res.data.sumImgUrl
+        console.log(meat)
+        apis.addMeat(meat)
+        .then(()=>{
+          dispatch(addMeat(meat))
+          history.push('/meat');
+          dispatch(imageActions.setPreview(null));
+        }).catch((err) => {
+          console.log(err)
+        })
+      }).catch((err)=>{
         console.log(err)
+        console.log("이미지 업로드가 안됨")
       })
     }
 }

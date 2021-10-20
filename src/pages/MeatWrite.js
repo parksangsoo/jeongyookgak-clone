@@ -47,10 +47,9 @@ const MeatWrite = (props) => {
         }
         
         const meat = {
-            src: "main_item01",
             title: title,
             category: category,
-            text: price
+            defaultprice: price
         }
 
         dispatch(meatActions.addMeatMiddleware(meat))
