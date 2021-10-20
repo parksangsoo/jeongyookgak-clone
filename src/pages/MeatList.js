@@ -72,7 +72,7 @@ const MeatList = (props) => {
             </MeatBtn>
           </FlexGrid>
           {pork && !beef && !kfc ? (
-            <FlexGrid is_flex justify="space-between">
+            <FlexGrid is_flex>
               {meats.map((meat) => {
                 if (meat.category === "pork") {
                   return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
