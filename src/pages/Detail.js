@@ -24,6 +24,7 @@ const Detail = (props) => {
   const item = useSelector(state=>state.post.list[0]);
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
+  const _id = props.match.params.id;
   const data = [
     {
       id: 0,
@@ -50,7 +51,7 @@ const Detail = (props) => {
     setCount(count + 1);
   };
   React.useEffect(()=>{
-    dispatch(postActions.setDetail(data));
+    dispatch(postActions.getDetailMiddleware(_id));
   },[]);
   
   if(item){

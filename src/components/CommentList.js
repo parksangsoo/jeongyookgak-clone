@@ -30,7 +30,7 @@ const CommentList = (props) => {
     return (
       <Grid margin="39px auto" width="980px">
         {comment.map((d, idx) => {
-          return <Comment {...d} key={d.id} />;
+          return <Comment {...d} key={d.comment_id} />;
         })}
       </Grid>
     );
