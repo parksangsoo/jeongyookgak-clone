@@ -25,9 +25,7 @@ const Detail = (props) => {
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
   const _id = props.match.params.id;
-
-  const item=_item.data;
-  
+  const item = _item[0]
   const menuSelect = (v) => {
     setMenu(v);
   };
@@ -136,6 +134,37 @@ const Detail = (props) => {
                   }}
                 >
                   장바구니
+                </Button>
+              </Grid>
+              <Grid
+                margin="40px auto"
+                height="60px"
+                is_flex
+                align_items="start"
+              >
+                <Button
+                  bg="#888"
+                  width="180px"
+                  height="60px"
+                  size="16px"
+                  bold
+                  _onClick={() => {
+                    console.log(item)
+                  }}
+                >
+                  상품삭제
+                </Button>
+                <Button
+                  bg="#d0021b"
+                  width="180px"
+                  height="60px"
+                  size="16px"
+                  bold
+                  _onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  상품수정
                 </Button>
               </Grid>
             </Grid>

@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Container, FlexGrid } from "../elements/index";
+import { Container, FlexGrid, Button } from "../elements/index";
 import Card from "../components/Card";
 import banner_pork from "../image/pcpork.png";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as meatCreators } from "../redux/modules/post";
 
-const MeatList = () => {
+const MeatList = (props) => {
   const dispatch = useDispatch();
   const meats = useSelector((state) => state.post.list);
-
+  const is_login = useSelector((state) => state.user.is_login);
+  const { history } = props;
   const [pork, setPork] = React.useState(true);
   const [beef, setBeef] = React.useState(false);
   const [kfc, setKfc] = React.useState(false);
 
-  useEffect(() => {
-    dispatch(meatCreators.getMeatMiddleware());
-  }, []);
-
+  
   const changePork = () => {
     setPork(true);
     setBeef(false);
@@ -35,6 +33,13 @@ const MeatList = () => {
     setPork(false);
     setBeef(false);
   };
+
+  React.useEffect(() => {
+    if(meats.length < 2){
+      dispatch(meatCreators.getMeatMiddleware());
+    }
+  }, []);
+
 
   return (
     <>
@@ -67,10 +72,14 @@ const MeatList = () => {
             </MeatBtn>
           </FlexGrid>
           {pork && !beef && !kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "pork") {
-                  return <Card key={meat.id} {...meat} />;
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                          <Card {...meat} />
+                        </FlexGrid>)
                 }
                 return null;
               })}
@@ -79,10 +88,14 @@ const MeatList = () => {
             ""
           )}
           {!pork && beef && !kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "beaf") {
-                  return <Card key={meat.id} {...meat} />;
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                    <Card {...meat} />
+                  </FlexGrid>)
                 }
                 return null;
               })}
@@ -91,10 +104,14 @@ const MeatList = () => {
             ""
           )}
           {!pork && !beef && kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "chicken") {
-                  return <Card key={meat.id} {...meat} />;
+                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
+                    history.push(`/detail/${meat.itemId}`);
+                  }}>
+                    <Card {...meat} />
+                  </FlexGrid>)
                 }
                 return null;
               })}
@@ -104,6 +121,15 @@ const MeatList = () => {
           )}
         </Container>
       </FlexGrid>
+      {is_login?(<Button
+          is_float
+          _onClick={() => {
+            history.push("/meatwrite");
+          }}
+        >
+          +
+        </Button>):''}
+      
     </>
   );
 };

@@ -27,8 +27,6 @@ const addMeat = createAction(ADD_MEAT, (meat_info) => ({meat_info}))
 const delMeat = createAction(DEL_MEAT, (meat_id) => ({meat_id}))
 const editMeat = createAction(EDIT_MEAT,(meat_id,meat_info) => ({meat_id,meat_info}))
 
-const setDetail = createAction(SET_DETAIL, (detail_info) => ({detail_info}))
-
 const initialState = {
     list:[],
 }
@@ -49,13 +47,24 @@ const getMeatMiddleware = () => {
 
 const addMeatMiddleware = (meat) => {
     return (dispatch, getState, {history}) => {
-      apis.addMeat(meat)
-      .then(()=>{
-        dispatch(addMeat(meat))
-        history.push('/meat');
-        dispatch(imageActions.setPreview(null));
-      }).catch((err) => {
+      const _file = getState().image.file;
+      let formData = new FormData()
+      formData.append("image", _file)
+      apis.addImage(formData).then((res) => {
+
+        meat.sumImgUrl = res.data.sumImgUrl
+        console.log(meat)
+        apis.addMeat(meat)
+        .then(()=>{
+          dispatch(addMeat(meat))
+          history.push('/meat');
+          dispatch(imageActions.setPreview(null));
+        }).catch((err) => {
+          console.log(err)
+        })
+      }).catch((err)=>{
         console.log(err)
+        console.log("이미지 업로드가 안됨")
       })
     }
 }
@@ -63,8 +72,8 @@ const addMeatMiddleware = (meat) => {
 const getDetailMiddleware = (item_id) => {
   return (dispatch, getState, {history}) => {
     apis.getDetail(item_id).then((res)=>{
-      const detail_info=res.data
-      dispatch(setDetail(detail_info));
+      const detail_info = res.data.data
+      dispatch(setMeat([detail_info]));
     }).catch((err) => {
       console.log(err);
     })
@@ -119,10 +128,6 @@ export default handleActions(
           let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.meat_id);
           draft.list[idx] = {...draft.list[idx],...action.payload.meat_info}
         }),
-        [SET_DETAIL] : (state, action) =>
-        produce(state, (draft) => {
-          draft.list=action.payload.detail_info;
-        }),
     },
     initialState
 );
@@ -136,7 +141,6 @@ const actionCreators = {
     delMeatMIddleware,
     editMeat,
     editMeatMIddleware,
-    setDetail,
     getDetailMiddleware,
   };
   
