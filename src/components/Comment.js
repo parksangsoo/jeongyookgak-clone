@@ -22,12 +22,12 @@ const Comment = (props) => {
   };
   const editComment=() => {
     console.log("aaa");
-    dispatch(commentActions.editCommentMiddleware(props.comment_id, content));
+    dispatch(commentActions.editCommentMiddleware(props.id, content));
     setEditOpen(false);
     setContent("");
   }
   const delComment = () => {
-    dispatch(commentActions.deleteCommentMiddleware(props.comment_id));
+    dispatch(commentActions.deleteCommentMiddleware(props.id));
   };
   return (
     <Grid
