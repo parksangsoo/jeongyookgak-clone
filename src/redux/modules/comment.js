@@ -7,7 +7,7 @@ const GET_COMMENT = "GET_COMMENT";
 const DELETE_COMMENT = "DELETE_COMMENT";
 const EDIT_COMMENT = "EDIT_COMMENT";
 
-const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
+const addComment = createAction(ADD_COMMENT, (comment) => (comment) );
 const getComment = createAction(GET_COMMENT, (comment) => ({ comment }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_id) => comment_id);
 const editComment = createAction(EDIT_COMMENT, (comment_id,content)=>(comment_id,{content}));
@@ -17,10 +17,14 @@ const initialState = {
 };
 
 const addCommentMiddleware = (item_id, content) => {
+  console.log(content);
   return (dispatch, getState, { history }) => {
-    apis.addComment(item_id, { content }).then((res) => {
+    apis.addComment(item_id,  content).then((res) => {
       dispatch(addComment(res.data));
-    });
+    }).catch((err) =>{
+      console.log(err);
+    }
+    );
   };
 };
 
