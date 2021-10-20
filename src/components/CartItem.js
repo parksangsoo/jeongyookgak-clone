@@ -5,21 +5,24 @@ import AddIcon from "@mui/icons-material/Add";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 import ClearIcon from "@mui/icons-material/Clear";
 import { actionCreators as cartActions } from "../redux/modules/cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // @mida_작업__CartItem UI 및 기능__
 const CartItem = (props) => {
   const { itemId, price, sumImgUrl, title, option } = props;
   const dispatch = useDispatch();
+  const item_count = useSelector((state) => state.cart.item_count);
+  const item_id = useSelector((state) => state.cart.item_id);
 
   const [state, setState] = React.useState({
     price: price,
     count: 1,
+    itemId,
   });
 
   const onIncrease = (price) => {
     setState({ ...state, price: state.price + price, count: state.count + 1 });
-    dispatch(cartActions.increasePrice(price));
+    dispatch(cartActions.increasePrice(itemId, price, state.count));
   };
 
   const onDecrease = (price) => {
@@ -28,12 +31,18 @@ const CartItem = (props) => {
       price: state.price - price,
       count: state.count - 1,
     });
-    dispatch(cartActions.decreasePrice(price));
+    dispatch(cartActions.decreasePrice(itemId, price, state.count));
   };
 
   const onDeleteItem = (itemId, price, count) => {
     dispatch(cartActions.deleteCart(itemId, price, count));
   };
+
+  React.useEffect(() => {
+    return () => {
+      console.log("뒷정리함수");
+    };
+  }, []);
 
   return (
     <>

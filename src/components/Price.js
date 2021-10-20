@@ -1,12 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Text, Button } from "../elements";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as cartActions } from "../redux/modules/cart";
 
 // @mida_작업__CartItem UI 및 기능__
 const Price = (props) => {
+  const dispatch = useDispatch();
   const total_price = useSelector((state) => state.cart.total_price);
-
+  React.useEffect(() => {
+    return () => {
+      dispatch(cartActions.reset_totalPrice(0));
+    };
+  }, []);
   return (
     <>
       <BorderGrid padding="27px">
