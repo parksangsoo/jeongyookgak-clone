@@ -16,8 +16,9 @@ const CommentWrite = (props) => {
         commentActions.addCommentMiddleware(props.item_id, {content})
       );
       setContent("");
+      window.alert("리뷰가 작성됐습니다.");
     } else {
-      window.alert("댓글을 입력해주세요");
+      window.alert("리뷰를 입력해주세요");
     }
   };
 
@@ -27,7 +28,7 @@ const CommentWrite = (props) => {
         <Input
           multiLine
           width="900"
-          placeholder="댓글을 입력해주세요."
+          placeholder="리뷰를 입력해주세요."
           _onChange={onChange}
           value={content}
         ></Input>

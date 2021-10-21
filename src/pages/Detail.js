@@ -23,7 +23,8 @@ const Detail = (props) => {
   const _item = useSelector((state) => state.post.list);
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
-  const loginCheck = sessionStorage.getItem("token");
+  const loginCkeck = sessionStorage.getItem("token");
+
   const _id = props.match.params.id;
   const item = _item[0];
   let defaultOption = "";
@@ -250,7 +251,7 @@ const Detail = (props) => {
         <Container>
           {menu ? (
             <>
-              {loginCheck?<CommentWrite item_id={_id} />:null}
+              {loginCkeck?<CommentWrite item_id={_id} />:null}
               <CommentList item_id={_id} />
             </>
           ) : (

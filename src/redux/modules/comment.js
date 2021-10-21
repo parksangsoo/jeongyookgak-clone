@@ -64,7 +64,7 @@ export default handleActions(
   {
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.unshift(action.payload.comment);
+        draft.list.push(action.payload.comment);
       }),
     [GET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
@@ -74,14 +74,13 @@ export default handleActions(
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         const idx = draft.list.findIndex((c) => c.id === action.payload);
-        draft.list.splice(idx, 1);
+        draft.list.splice(idx, 1); 
       }),
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         const idx = draft.list.findIndex(
           (c) => c.id === action.payload.comment_id
         );
-        console.log(idx);
         draft.list[idx] = {...draft.list[idx], content:action.payload.content};
       }),
   },
