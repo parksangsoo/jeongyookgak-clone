@@ -98,11 +98,7 @@ const editMeatMIddleware = (meat_id,meat) => {
       console.log("고기 정보가 없어요!");
       return
     }
-  
-    const _image = getState().image.preview;
-    const _meat_idx = getState().post.list.findIndex((p) => p.itemId.toString() === meat_id);
-    const _meat = getState().post.list[_meat_idx];
-    if(_image === _meat.sumImgUrl){
+      const _image = getState().image.preview;
 
       meat.sumImgUrl = _image
       console.log(meat)
@@ -112,31 +108,8 @@ const editMeatMIddleware = (meat_id,meat) => {
         dispatch(imageActions.setPreview(null));
       }).catch((err)=> {
         console.log(err);
-        console.log("??????");
       })
-    }else{
-      const _file = getState().image.file;
-      let formData = new FormData()
-      formData.append("image", _file)
-      apis.addImage(formData).then((res) => {
-        console.log(res.data)
-        meat.sumImgUrl = res.data
-        console.log(meat)
-        apis.editMeat(meat_id,meat).then(()=> {
-          dispatch(editMeat(meat_id,meat));
-          history.replace("/meat");
-          dispatch(imageActions.setPreview(null));
-        }).catch((err)=> {
-          console.log(err);
-        })
-      }).catch((err)=>{
-        console.log(err)
-        console.log("이미지 업로드가 안됨")
-      })
-
-    }
     
-
   }
 }
 
