@@ -13,6 +13,7 @@ const Card = (props) => {
 
   const onClick = (e, item) => {
     e.stopPropagation();
+
     const newItem = {
       itemId: item.itemId,
       amount: 1,

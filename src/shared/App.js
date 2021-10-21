@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -12,9 +12,8 @@ import MeatList from "../pages/MeatList";
 import Detail from "../pages/Detail";
 import MeatWrite from "../pages/MeatWrite";
 import Cart from "../pages/Cart";
-function App() {
-  useEffect(() => {}, []);
 
+function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>

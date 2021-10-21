@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   React.useEffect(() => {
-    dispatch(userActions.loginCheck());
+    dispatch(userActions.loginCheckFB());
   }, []);
 
   return (
