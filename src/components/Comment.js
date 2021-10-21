@@ -10,6 +10,9 @@ const Comment = (props) => {
   const [edit_open, setEditOpen] = useState(false);
   const [content, setContent] = useState(props.content);
   const dispatch = useDispatch();
+  const loginId = sessionStorage.getItem("username");
+  let createAt = props.createAt;
+  console.log(createAt);
   const onChange =(e) => {
     setContent(e.target.value);
   }
@@ -39,11 +42,12 @@ const Comment = (props) => {
           {props.writer}
         </Text>
         <Grid width="auto">
-          <EditIcon style={{ marginRight: "20px" }} onClick={edit} />
+          {loginId===props.writer?<><EditIcon style={{ marginRight: "20px" }} onClick={edit} />
           <HighlightOffIcon
             style={{ marginRight: "20px" }}
             onClick={delComment}
-          />
+          /></> : null}
+          
         </Grid>
       </Grid>
       <Grid
@@ -78,7 +82,7 @@ const Comment = (props) => {
           margin="10px 0px 0px 0px"
           bold
         >
-          {props.createAt}
+          {createAt}
         </Text>
       </Grid>
     </Grid>
