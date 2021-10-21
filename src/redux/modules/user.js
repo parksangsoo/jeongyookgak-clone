@@ -50,12 +50,12 @@ export const logOutFB = () => {
     sessionStorage.removeItem("username");
     dispatch(setUser(null));
     alert("로그아웃 되었습니다.");
-    history.replace("/");
+    history.push("/");
   };
 };
 
 // 로그인 여부 체크
-export const loginCheck = () => {
+export const loginCheckFB = () => {
   return (dispatch) => {
     const username = sessionStorage.getItem("username");
     dispatch(setUser(username));
@@ -77,7 +77,7 @@ const actionCreators = {
   loginFB,
   signupFB,
   logOutFB,
-  loginCheck,
+  loginCheckFB,
 };
 
 export { actionCreators };
