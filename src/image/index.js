@@ -2,6 +2,7 @@ import LogoImage from "./logo.png";
 import main_top from "./main_top.png";
 import main_img01 from "./main_img01.png";
 import main_img02 from "./main_img02.png";
+import main_img03 from "./main_img03.png";
 import main_item01 from "./main_item01.png";
 import main_item02 from "./main_item02.png";
 import main_item03 from "./main_item03.png";
@@ -18,6 +19,7 @@ export {
   main_top,
   main_img01,
   main_img02,
+  main_img03,
   main_item01,
   main_item02,
   main_item03,

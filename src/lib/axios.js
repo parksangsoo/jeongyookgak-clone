@@ -3,6 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "http://52.79.248.107:8080/",
 });
+
 instance.interceptors.request.use((config) => {
   config.headers["Content-Type"] = "application/json; charset=utf-8";
   config.headers["X-Auth-Token"] = `${sessionStorage.getItem("token")}`;

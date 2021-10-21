@@ -2,13 +2,14 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { type, src, size, width, padding } = props;
+  const { type, src, size, width, padding, height } = props;
 
   const styles = {
     src: src,
     size: size,
     width: width,
     padding: padding,
+    height: height,
   };
   if (type === "default") {
     return <DefaultImage {...styles} src={src} />;
@@ -46,6 +47,7 @@ const DefaultImage = styled.img`
   ${(props) => (props.width ? `width: ${props.width};` : "100%")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "0")};
   object-fit: cover;
+  ${(props) => (props.height ? `height: ${props.height};` : "")}
 `;
 
 export default Image;

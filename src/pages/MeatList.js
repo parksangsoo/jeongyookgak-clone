@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, FlexGrid, Button } from "../elements/index";
+import { Container, FlexGrid, Button, Image } from "../elements/index";
 import Card from "../components/Card";
 import banner_pork from "../image/pcpork.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,6 @@ const MeatList = (props) => {
   const [beef, setBeef] = React.useState(false);
   const [kfc, setKfc] = React.useState(false);
 
-  
   const changePork = () => {
     setPork(true);
     setBeef(false);
@@ -35,17 +34,21 @@ const MeatList = (props) => {
   };
 
   React.useEffect(() => {
-    if(meats.length < 2){
+    if (meats.length < 2) {
       dispatch(meatCreators.getMeatMiddleware());
     }
   }, []);
 
-
   return (
     <>
-      <FlexGrid>
+      <FlexGrid padding="50px 0 0 0">
         <FlexGrid>
-          <Banner style={{ backgroundImage: `url(${banner_pork})` }} />
+          <Image type="default" height="500px" src={banner_pork} />
+          {/* <Banner
+            style={{
+              backgroundImage: `url(${banner_pork})`,
+            }}
+          /> */}
         </FlexGrid>
         <Container margin="50px auto">
           <FlexGrid is_flex>
@@ -72,14 +75,21 @@ const MeatList = (props) => {
             </MeatBtn>
           </FlexGrid>
           {pork && !beef && !kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "pork") {
-                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
-                    history.push(`/detail/${meat.itemId}`);
-                  }}>
-                          <Card {...meat} />
-                        </FlexGrid>)
+                  return (
+                    <FlexGrid
+                      key={meat.itemId}
+                      width="32%"
+                      margin="0 0 50px 0"
+                      _onClick={() => {
+                        history.push(`/detail/${meat.itemId}`);
+                      }}
+                    >
+                      <Card {...meat} />
+                    </FlexGrid>
+                  );
                 }
                 return null;
               })}
@@ -88,14 +98,21 @@ const MeatList = (props) => {
             ""
           )}
           {!pork && beef && !kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "beaf") {
-                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
-                    history.push(`/detail/${meat.itemId}`);
-                  }}>
-                    <Card {...meat} />
-                  </FlexGrid>)
+                  return (
+                    <FlexGrid
+                      key={meat.itemId}
+                      width="32%"
+                      margin="0 0 50px 0"
+                      _onClick={() => {
+                        history.push(`/detail/${meat.itemId}`);
+                      }}
+                    >
+                      <Card {...meat} />
+                    </FlexGrid>
+                  );
                 }
                 return null;
               })}
@@ -104,14 +121,21 @@ const MeatList = (props) => {
             ""
           )}
           {!pork && !beef && kfc ? (
-            <FlexGrid is_flex>
+            <FlexGrid is_flex justify="space-between">
               {meats.map((meat) => {
                 if (meat.category === "chicken") {
-                  return (<FlexGrid key={meat.itemId} width="32%" _onClick={()=>{
-                    history.push(`/detail/${meat.itemId}`);
-                  }}>
-                    <Card {...meat} />
-                  </FlexGrid>)
+                  return (
+                    <FlexGrid
+                      key={meat.itemId}
+                      width="32%"
+                      margin="0 0 50px 0"
+                      _onClick={() => {
+                        history.push(`/detail/${meat.itemId}`);
+                      }}
+                    >
+                      <Card {...meat} />
+                    </FlexGrid>
+                  );
                 }
                 return null;
               })}
@@ -121,15 +145,18 @@ const MeatList = (props) => {
           )}
         </Container>
       </FlexGrid>
-      {is_login?(<Button
+      {is_login ? (
+        <Button
           is_float
           _onClick={() => {
             history.push("/meatwrite");
           }}
         >
           +
-        </Button>):''}
-      
+        </Button>
+      ) : (
+        ""
+      )}
     </>
   );
 };

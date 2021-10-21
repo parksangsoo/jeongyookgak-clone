@@ -37,11 +37,11 @@ const Card = (props) => {
           <ShoppingCartIcon style={{ fontSize: "1.8rem" }} />
         </Cart>
       </ItemWrap>
-      <FlexGrid margin="15px 0 0 0">
+      <FlexGrid margin="22px 0 0 0">
         <Text size="18px" bold>
           {title}
         </Text>
-        <Text size="16px" color="#9b9b9b" margin="6px 0 0 0">
+        <Text size="16px" color="#9b9b9b" margin="5px 0 0 0" weight="300">
           기준가 {defaultprice}원
         </Text>
       </FlexGrid>
