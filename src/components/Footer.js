@@ -44,8 +44,8 @@ const Footer = (props) => {
             </Text>
           </FlexGrid>
         </FlexGrid>
-        <FlexGrid is_flex justify="space-between">
-          <FlexGrid is_flex flex>
+        <FooterGrid alignItems="flex-end" margin="3px 0 0 0">
+          <FlexGrid flex is_flex>
             <Text size="13px">(주)정육각</Text>
             <Text size="13px">대표이사: 김재연</Text>
             <Text size="13px" margin="0 10px" color="#ced4da">
@@ -62,9 +62,12 @@ const Footer = (props) => {
             <Text size="12px" align="right" color="#868e96">
               점심: 12:30 - 13:30
             </Text>
+            <Text size="12px" align="right" color="#868e96">
+              (토, 일 및 공휴일 휴무)
+            </Text>
           </FlexGrid>
-        </FlexGrid>
-        <FlexGrid is_flex justify="space-between">
+        </FooterGrid>
+        <FooterGrid is_flex justify="space-between" margin="5px 0 0 0">
           <FlexGrid is_flex>
             <Text size="12px">사업자등록번호 : 224-87-00271 [조회]</Text>
             <Text size="12px" margin="0 10px" color="#ced4da">
@@ -73,44 +76,43 @@ const Footer = (props) => {
             <Text size="12px">통신판매업신고번호: 2021-경기김포-0668</Text>
           </FlexGrid>
           <FlexGrid>
-            <Text size="12px" align="right" color="#868e96">
-              (토, 일 및 공휴일 휴무)
-            </Text>
-            <Text size="12px" align="right">
-              카카오톡: @정육각
+            <Text size="13px" align="right">
+              카카오톡: <span style={{ color: "#4bb8ce" }}>@정육각</span>
             </Text>
           </FlexGrid>
-        </FlexGrid>
-        <FlexGrid is_flex justify="space-between">
+        </FooterGrid>
+        <FooterGrid is_flex justify="space-between" margin="5px 0 0 0">
           <FlexGrid is_flex>
             <Text size="12px">
               개인정보관리책임자: 박준태(privacy@yookgak.com)
             </Text>
           </FlexGrid>
           <FlexGrid>
-            <Text size="12px">이메일: help@yookgak.com</Text>
+            <Text size="13px" align="right">
+              이메일: <span style={{ color: "#4bb8ce" }}>help@yookgak.com</span>
+            </Text>
           </FlexGrid>
-        </FlexGrid>
-        <FlexGrid is_flex justify="space-between" margin="6px 0 0 0">
+        </FooterGrid>
+        <FooterGrid is_flex justify="space-between" margin="10px 0 0 0">
           <FlexGrid is_flex>
             <Text size="12px">
               © 2021 Jeongyookgak Inc. All rights reserved.
             </Text>
           </FlexGrid>
           <FlexGrid is_flex>
-            <AppButton size="12px" color="black" padding="6px 8px">
+            <AppButton size="12px" color="black" width="100px">
               자주묻는질문
             </AppButton>
             <AppButton
               size="12px"
               color="black"
-              padding="6px 8px"
+              width="100px"
               margin="0 0 0 10px"
             >
               1:1문의
             </AppButton>
           </FlexGrid>
-        </FlexGrid>
+        </FooterGrid>
       </Container>
     </FooterWrap>
   );
@@ -121,12 +123,20 @@ const FooterWrap = styled.div`
   padding: 0 0 20px;
   border-top: 1px solid #bdbdbd;
 `;
+const FooterGrid = styled.div`
+  display: flex;
+  justify-content: ${(props) => (props.justify ? props.justify : "flex-start")};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+  flex: ${(props) => (props.flex ? "1" : "")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+`;
 const FooterLine = styled.div`
   margin-bottom: 30px;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 `;
 const AppButton = styled.button`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : `0`)};
   padding: ${(props) => (props.padding ? props.padding : `8px 15px`)};
   font-size: ${(props) => (props.size ? props.size : `13px`)};
