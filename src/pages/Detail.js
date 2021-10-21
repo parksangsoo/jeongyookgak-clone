@@ -138,6 +138,13 @@ const Detail = (props) => {
                   height="60px"
                   is_flex
                   align_items="start"
+                  size="16px"
+                  bold
+                  _onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dispatch(postActions.delMeatMIddleware(item.itemId));
+                  }}
                 >
                   <Button
                     bg="#888"
@@ -167,6 +174,13 @@ const Detail = (props) => {
                   height="60px"
                   is_flex
                   align_items="start"
+                  size="16px"
+                  bold
+                  _onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    history.push(`/meatwrite/${item.itemId}`);
+                  }}
                 >
                   <Button
                     bg="#888"

@@ -20,7 +20,7 @@ export const apis = {
   // 게시물 불러오기
   getMeat: () => instance.get("/item/all"),
   addMeat: (contents) => instance.post("/item", contents),
-  delMeat: (item_id) => instance.delete(`/item/delete/${item_id}`),
+  delMeat: (item_id) => instance.get(`/item/delete/${item_id}`),
   editMeat: (item_id, contents) => instance.put(`/item/update/${item_id}`, contents),
   //이미지 업로드
   addImage: (imagedata) => instance.post("/image",imagedata),
