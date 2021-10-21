@@ -1,12 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid } from "../elements/index";
+import { Grid , Text} from "../elements/index";
 import Comment from "./Comment";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentList = (props) => {
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.list);
-  comment&&console.log(comment);
   React.useEffect(() => {
     dispatch(commentActions.getCommentMiddleware(props.item_id));
   }, []);
@@ -18,7 +17,7 @@ const CommentList = (props) => {
         })}
       </Grid>
     );
-  }
+  } 
   return null;
 };
 
