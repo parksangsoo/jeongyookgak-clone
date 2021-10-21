@@ -2,17 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { FlexGrid, Image, Text } from "../elements";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as cartActions } from "../redux/modules/cart";
 
 // @mida_작업__Card UI 및 기능__
 const Card = (props) => {
-  const { sumImgUrl, title, defaultprice, item } = props;
   const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
+  const { sumImgUrl, title, defaultprice, item } = props;
   const badge_text = title.indexOf("무항생제") !== -1 ? true : false;
 
   const onClick = (e, item) => {
     e.stopPropagation();
+    if (!is_login) {
+      alert("로그인 후 이용할 수 있습니다.");
+      return;
+    }
 
     const newItem = {
       itemId: item.itemId,
