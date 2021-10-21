@@ -3,6 +3,7 @@ import { Container, FlexGrid, Text, Input, Button } from '../elements/index';
 import Upload from "../shared/Upload";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as meatActions } from "../redux/modules/post";
+import { actionCreators as imageActions } from "../redux/modules/image";
 
 const MeatWrite = (props) => {
 
@@ -11,10 +12,11 @@ const MeatWrite = (props) => {
     const editmode = meat_id ? true : false;
     const preview = useSelector((state) => state.image.preview);
     const meat_list = useSelector((state) => state.post.list);
-    const _meat = editmode ? meat_list.find((p) => p.id.toString() === meat_id): null;
+    const _meat = editmode ? meat_list.find((p) => p.itemId.toString() === meat_id): null;
     const [title,setTitle] = useState(_meat ? _meat.title : "");
     const [category,setCategory] = useState(_meat ? _meat.category : "");
-    const [price,setPrice] = useState(_meat ? _meat.text : "");
+    const regex = /[^0-9]/gi;
+    const [price,setPrice] = useState(_meat ? _meat.defaulpricetostring.replace(regex,'').slice(0, -3) : "");
     const { history } = props;
 
     const meattypes = [
@@ -31,7 +33,6 @@ const MeatWrite = (props) => {
     }
 
     const changeCategory = (e) => {
-        console.log(category)
         setCategory(e.target.value)
         
     }
@@ -80,10 +81,10 @@ const MeatWrite = (props) => {
         }
         
         const meat = {
-            src: "main_item01",
             title: title,
             category: category,
-            text: price
+            defaultprice: price,
+            detailImgUrl: "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fdescriptions%2Fweb%2Fporkbelly-clean2.png?alt=media"
         }
 
         dispatch(meatActions.editMeatMIddleware(meat_id,meat))
@@ -96,7 +97,10 @@ const MeatWrite = (props) => {
 
             return;
         }
-    })
+        if (editmode) {
+            dispatch(imageActions.setPreview(_meat.sumImgUrl));
+        }
+    },[])
 
     return (
         <>
@@ -106,12 +110,16 @@ const MeatWrite = (props) => {
                         <Text>제목</Text>
                         <Input value={title} width="50%" _onChange={changeTitle}/>
                     </FlexGrid>
+                    {!editmode?(
+                        <div>
                     <FlexGrid>
                         <img src={preview ? preview : "http://via.placeholder.com/400x300"}/>
                     </FlexGrid>
                     <FlexGrid margin="0px 0px 20px 0px">   
                         <Upload />
                     </FlexGrid>
+                    </div>
+                    ):""}
                     <FlexGrid margin="0px auto 20px auto">
                         <Text>고기 분류</Text>
                         {meattypes.map((meattype) => (
