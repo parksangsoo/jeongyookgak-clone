@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Grid, Input } from "../elements/index";
+import { Text, Grid, Input,FlexGrid } from "../elements/index";
 import styled from "styled-components";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import EditIcon from "@mui/icons-material/Edit";
@@ -11,8 +11,9 @@ const Comment = (props) => {
   const [content, setContent] = useState(props.content);
   const dispatch = useDispatch();
   const loginId = sessionStorage.getItem("username");
-  let createAt = props.createAt;
-  console.log(createAt);
+  let _createAt = props.createdAt;
+  const date = new Date(_createAt);
+  let createAt = date.toDateString();
   const onChange =(e) => {
     setContent(e.target.value);
   }
@@ -72,19 +73,18 @@ const Comment = (props) => {
           ></Input>
         )}
       </Grid>
-      <Grid height="auto" is_flex>
-        {edit_open && <Button onClick={editComment}>수정완료</Button>}
-
+      <FlexGrid height="auto" is_flex justify ="flex-end">
         <Text
           align="right"
           size="17px"
           color="#7a7a7a"
-          margin="10px 0px 0px 0px"
+          margin="10px 20px 0px 0px"
           bold
         >
           {createAt}
         </Text>
-      </Grid>
+        {edit_open && <Button onClick={editComment}>수정완료</Button>}
+      </FlexGrid>
     </Grid>
   );
 };
