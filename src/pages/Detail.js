@@ -24,7 +24,7 @@ const Detail = (props) => {
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
   const loginCkeck = sessionStorage.getItem("token");
-
+  console.log("detail _item = ", _item);
   const _id = props.match.params.id;
   const item = _item[0];
   let defaultOption = "";
@@ -55,6 +55,8 @@ const Detail = (props) => {
     itemId: _id,
     amount: count,
     option: option,
+    price: 100000,
+    defaultprice: 100000,
   };
 
   const addCart = () => {
@@ -251,7 +253,7 @@ const Detail = (props) => {
         <Container>
           {menu ? (
             <>
-              {loginCkeck?<CommentWrite item_id={_id} />:null}
+              {loginCkeck ? <CommentWrite item_id={_id} /> : null}
               <CommentList item_id={_id} />
             </>
           ) : (

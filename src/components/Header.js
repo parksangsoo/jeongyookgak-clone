@@ -54,9 +54,7 @@ const Header = () => {
 
                 <Link fontSize="17px" _onClick={() => history.push("/cart")}>
                   <CartWrap>
-                    <ShoppingCartIcon
-                      style={{ verticalAlign: "bottom", fontSize: "2rem" }}
-                    />
+                    <ShoppingCartIcon style={{ fontSize: "2rem" }} />
                     {cart_count > 0 && (
                       <CartCount>
                         <Text color="#fff">{cart_count}</Text>
@@ -114,7 +112,6 @@ const Text = styled.span`
   padding-top: 3px;
   font-size: 14px;
   font-weight: bold;
-  vertical-align: bottom;
   color: #fff;
 `;
 
