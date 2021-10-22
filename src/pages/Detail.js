@@ -143,11 +143,6 @@ const Detail = (props) => {
                   align_items="start"
                   size="16px"
                   bold
-                  _onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dispatch(postActions.delMeatMIddleware(item.itemId));
-                  }}
                 >
                   <Button
                     bg="#888"
@@ -179,11 +174,6 @@ const Detail = (props) => {
                   align_items="start"
                   size="16px"
                   bold
-                  _onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    history.push(`/meatwrite/${item.itemId}`);
-                  }}
                 >
                   <Button
                     bg="#888"
@@ -191,8 +181,10 @@ const Detail = (props) => {
                     height="60px"
                     size="16px"
                     bold
-                    _onClick={() => {
-                      console.log(item);
+                    _onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      dispatch(postActions.delMeatMIddleware(item.itemId));
                     }}
                   >
                     상품삭제
@@ -203,8 +195,10 @@ const Detail = (props) => {
                     height="60px"
                     size="16px"
                     bold
-                    _onClick={() => {
-                      history.push("/");
+                    _onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    history.push(`/meatwrite/${item.itemId}`);
                     }}
                   >
                     상품수정
