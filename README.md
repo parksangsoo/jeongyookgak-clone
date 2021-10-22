@@ -3,6 +3,7 @@
 <li> 2021 10월18일 ~ 2021 10월 22일</li> 
 <li>6인 팀프로젝트<br>
   front-end: 박상수, 이미다, 김한준 <br> 
+  back-end: 최원빈, 이승준, 이재성 <br>
 <h2>사용기술</h2> 
 <li>javascript</li> 
 <li>React</li> 
