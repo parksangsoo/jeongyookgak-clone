@@ -18,5 +18,5 @@
 http://hanjunekim.shop.s3-website.ap-northeast-2.amazonaws.com/
 <h2>API디자인</h2> 
 https://www.notion.so/API-DESIGN-c73ef633b5f74b87a89ae6df250458f0
-<h2>와</h2> 
+<h2>와이어프레임</h2> 
 https://www.notion.so/WireFrame-97ea288c3459470b8a7c1f7789071285 
