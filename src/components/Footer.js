@@ -122,6 +122,7 @@ const FooterWrap = styled.div`
   margin-top: 100px;
   padding: 0 0 20px;
   border-top: 1px solid #bdbdbd;
+  object-fit: cover;
 `;
 const FooterGrid = styled.div`
   display: flex;

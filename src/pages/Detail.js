@@ -24,7 +24,7 @@ const Detail = (props) => {
   const [count, setCount] = useState(1);
   const [menu, setMenu] = useState(false);
   const loginCkeck = sessionStorage.getItem("token");
-  console.log("detail _item = ", _item);
+
   const _id = props.match.params.id;
   const item = _item[0];
   let defaultOption = "";
@@ -275,11 +275,14 @@ const OptionText = styled.p`
 
 const DetailButton = styled.button`
   width: 50px;
-  height: 50px;
+  height: 53px;
   border: solid 1px #7c7c7c;
   background-color: #1c1c1c;
   color: #7c7c7c;
   font-size: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const OptionGrid = styled.div`

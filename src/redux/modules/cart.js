@@ -56,7 +56,6 @@ const getCartListFB = () => {
 const postCartFB = (item) => {
   return async (dispatch) => {
     try {
-      console.log("fb item = ", item);
       await apiMida.post(`basket/insert`, item);
       dispatch(postCart(item));
       dispatch(addItemCount(1));
